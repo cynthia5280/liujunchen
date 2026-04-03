@@ -76,8 +76,8 @@ body::before {
    TYPE UTILITIES
 ───────────────────────────────────────────── */
 .t-label  { font-family:'Special Elite',serif; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--kraft); }
-.t-body   { font-family:'Libre Baskerville',serif; font-size:12.5px; line-height:1.85; color:var(--mocha); }
-.section-h { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(30px,4vw,46px); color:var(--ink); line-height:1.1; margin-bottom:.4rem; }
+.t-body   { font-family:'Libre Baskerville',serif; font-size:12.5px; line-height:1.85; color:var(--mocha); font-style: normal;}
+.section-h { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(30px,4vw,46px); color:var(--ink); line-height:1.1; margin-bottom:.4rem; font-style: normal }
 .section-h em { font-style:normal; font-weight:inherit; color:inherit; }
 .section-rule { display:flex; align-items:center; gap:.8rem; margin-bottom:2rem; }
 .section-rule::after { content:''; flex:1; border-top:1px solid var(--kraft); opacity:.4; }
@@ -136,9 +136,9 @@ body::before {
    HERO
 ───────────────────────────────────────────── */
 .hero { border-bottom:2px solid var(--ink); position:relative; z-index:10; overflow:hidden; }
-.hero-grid { display:grid; grid-template-columns:1fr 400px; min-height:calc(100vh - 88px); }
+.hero-grid { display:grid; grid-template-columns:minmax(0,1fr) 560px; gap:3.5rem; align-items:start; min-height:auto; }
 
-.hero-left { padding:3.5rem 3rem 3.5rem 0; border-right:1.5px solid var(--ink); display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+.hero-left { padding:3.5rem 0; border-right:none; display:flex; flex-direction:column; justify-content:flex-start; position:relative; gap:2rem; min-width:0; }
 .hero-eyebrow { font-family:'Special Elite',serif; font-size:9.5px; letter-spacing:.28em; text-transform:uppercase; color:var(--rust); margin-bottom:1.4rem; display:flex; align-items:center; gap:.7rem; }
 .hero-eyebrow::before { content:''; width:28px; height:1px; background:var(--rust); }
 .hero-name { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(64px,9vw,108px); line-height:.88; color:var(--ink); letter-spacing:-.02em; margin-bottom:.5rem; }
@@ -162,7 +162,7 @@ body::before {
 .stat-val { font-family:'Playfair Display',serif; font-style:italic; font-size:15px; color:var(--ink); }
 
 /* hero right */
-.hero-right { display:flex; flex-direction:column; padding:3.5rem 0 3.5rem 3rem; gap:1.2rem; position:relative; }
+.hero-right { display:flex; flex-direction:column; padding:0; gap:1.2rem; position:relative; margin-top:9rem; width:100%; max-width:560px; justify-self:end;transform: translateX(40px);}
 .mac-label-row { display:flex; align-items:center; gap:.7rem; margin-bottom:.9rem; }
 .mac-label-row::after { content:''; flex:1; border-top:1px dashed var(--kraft); opacity:.5; }
 
@@ -249,7 +249,7 @@ body::before {
    ABOUT
 ───────────────────────────────────────────── */
 .about-section { padding:5rem 0; position:relative; z-index:10; }
-.about-grid { display:grid; grid-template-columns:1fr 1px 300px; gap:0; }
+.about-grid { display:grid; grid-template-columns:1fr 1px 250px; gap:0; }
 .about-main { padding-right:3rem; }
 .about-divider { background:var(--kraft); opacity:.4; }
 .about-aside { padding-left:3rem; }
@@ -273,7 +273,7 @@ body::before {
    PORTFOLIO
 ───────────────────────────────────────────── */
 .port-section { background:var(--paper); padding:5rem 0; border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); position:relative; z-index:10; }
-.port-section-h { font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(30px,4vw,46px); color:var(--ink); line-height:1.1; margin-bottom:.4rem; }
+.port-section-h { font-family:'Playfair Display',serif; font-weight:750; font-size:clamp(30px,4vw,46px); color:var(--ink); line-height:1.1; margin-bottom:.4rem; }
 .port-section-h em { font-style:normal; font-weight:inherit; color:inherit; }
 .tab-bar { display:flex; border-bottom:1px solid var(--kraft); margin-bottom:2.5rem; opacity:1; }
 .tab-btn { font-family:'Special Elite',serif; font-size:10px; letter-spacing:.18em; text-transform:uppercase; padding:.7rem 1.2rem; color:var(--kraft); background:transparent; border:none; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all .18s; }
@@ -288,7 +288,7 @@ body::before {
 .proj-thumb { height:110px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--kraft); position:relative; background:var(--paper-dark); }
 .proj-type { position:absolute; bottom:7px; left:9px; font-family:'Special Elite',serif; font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:var(--kraft); }
 .proj-body { padding:1rem 1.1rem 1.2rem; flex:1; display:flex; flex-direction:column; }
-.proj-name { font-family:'Playfair Display',serif; font-style:italic; font-size:14px; color:var(--ink); margin-bottom:.4rem; }
+.proj-name { font-family:'Playfair Display',serif; font-style:normal; font-size:14px; color:var(--ink); margin-bottom:.4rem;font-weight: 600; }
 .proj-desc { font-family:'DM Sans',sans-serif; font-size:11px; color:var(--mocha); line-height:1.6; margin-bottom:.8rem; }
 .proj-chips { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:auto; }
 .chip { font-family:'Special Elite',serif; font-size:8.5px; letter-spacing:.1em; padding:.13rem .5rem; border:1px solid var(--kraft); color:var(--mocha); }
@@ -365,8 +365,9 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
 ───────────────────────────────────────────── */
 @media(max-width:800px){
   .hero-grid { grid-template-columns:1fr; }
-  .hero-left { border-right:none; border-bottom:1.5px solid var(--ink); padding:3rem 0; }
-  .hero-right { padding:2.5rem 0; }
+  .hero-left > div > div[style*="grid-template-columns:minmax(0,1fr) minmax(280px,360px)"] { grid-template-columns:1fr !important; }
+  .hero-left { border-right:none; border-bottom:none; padding:3rem 0; }
+  .hero-right { padding:0; margin-top:1.5rem; }
   .about-grid { grid-template-columns:1fr; }
   .about-divider { display:none; }
   .about-aside { padding-left:0; padding-top:2rem; }
@@ -727,7 +728,7 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
 ══════════════════════════════════════════ -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo">Liujun <span>Chen</span></div>
+    <div class="nav-logo">Liujun Chen</div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
@@ -745,345 +746,137 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
 <div style="max-width:1200px;margin:0 auto;padding:0 2.5rem;">
 <div class="hero-grid">
 
-  <!-- LEFT -->
   <div class="hero-left">
-    <!-- shokupan sticker near intro -->
-    <div class="sticker" style="top:1.5rem;right:1rem;animation:wobble 4s ease-in-out infinite;opacity:.7;">
-      <svg width="36" height="38" viewBox="0 0 36 38" fill="none">
-        <!-- shokupan slice — soft rounded square loaf slice -->
-        <rect x="3" y="8" width="30" height="26" rx="4" fill="#F0D8A8" stroke="#C4A060" stroke-width="1.2"/>
-        <!-- crust top arc -->
-        <path d="M3 14 Q18 2 33 14" fill="#C4902C" stroke="#A07020" stroke-width="1.1"/>
-        <!-- inner crumb texture dots -->
-        <circle cx="12" cy="20" r="1.5" fill="rgba(180,130,60,.3)"/>
-        <circle cx="20" cy="17" r="1.2" fill="rgba(180,130,60,.25)"/>
-        <circle cx="26" cy="22" r="1.4" fill="rgba(180,130,60,.28)"/>
-        <circle cx="15" cy="26" r="1"   fill="rgba(180,130,60,.2)"/>
-        <circle cx="23" cy="28" r="1.3" fill="rgba(180,130,60,.22)"/>
-      </svg>
-    </div>
+    <div class="hero-eyebrow">↳ Marketing Growth Analyst</div>
 
-    <div>
-      <div class="hero-eyebrow">Marketing Growth Analyst</div>
-      <div class="hero-name">Liujun<em>Chen</em></div>
-      <div class="hero-title">Consumer Insights &nbsp;·&nbsp; Data Visualization &nbsp;·&nbsp; Paid Media</div>
-      <div class="tape-h" style="width:110px;margin-bottom:.6rem;transform:rotate(-.5deg);"></div>
-      <p class="hero-bio">I speak three languages, but I’m most interested in the one customers never say out loud — hidden in data, behavior, and decisions. I decode it and turn it into data storytelling and marketing growth strategy </p>
+    <div style="
+  font-family:'Playfair Display',serif;
+  font-weight:800;
+  font-size:clamp(40px,6vw,64px);
+  line-height:1.05;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+  margin-bottom:0.5rem;
+">
+  Liujun Chen
+</div>
 
-      <div class="hero-tags">
-        <span class="tag filled" style="transform:rotate(-.5deg);display:inline-block;">Data Viz</span>
-        <span class="tag" style="transform:rotate(.4deg);display:inline-block;">Growth</span>
-        <span class="tag" style="transform:rotate(-.3deg);display:inline-block;">Paid Media</span>
-        <span class="tag" style="transform:rotate(.6deg);display:inline-block;">Insights</span>
-        <span class="tag" style="transform:rotate(-.4deg);display:inline-block;">Market Research</span>
+    
+
+    <div style="margin-top:1.6rem;max-width:560px;position:relative;">
+      <div style="
+        position:absolute;
+        top:-10px;
+        left:-10px;
+        font-size:14px;
+        color:var(--kraft);
+        opacity:.7;
+      ">✦</div>
+
+      <div style="
+        font-family:'Playfair Display',serif;
+        font-size:16px;
+        color:var(--ink);
+        line-height:1.35;
+        font-weight:450;
+      ">
+        As a growth marketing analyst, I focus on what makes people click—that’s my secret ingredient.
       </div>
 
-      <!-- colored chip stickers row -->
-      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;">
-        <span class="s-chip s-sage">
-          <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="3.5" fill="var(--sage)" opacity=".4"/><circle cx="4.5" cy="4.5" r="1.5" fill="var(--sage)"/></svg>
-          Psychology
-        </span>
-        <span class="s-chip s-slate">
-          <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="3.5" fill="var(--slate)" opacity=".4"/><circle cx="4.5" cy="4.5" r="1.5" fill="var(--slate)"/></svg>
-          Comp. Social Sci.
-        </span>
-        <span class="s-chip s-tan">
-          <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="3.5" fill="var(--tangerine)" opacity=".4"/><circle cx="4.5" cy="4.5" r="1.5" fill="var(--tangerine)"/></svg>
-          Open to Work
-        </span>
-        <span class="s-chip s-blush">
-          <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><circle cx="4.5" cy="4.5" r="3.5" fill="var(--blush)" opacity=".4"/><circle cx="4.5" cy="4.5" r="1.5" fill="var(--blush)"/></svg>
-          Kpop ♪
-        </span>
-      </div>
-
-      <div class="hero-btns">
-        <a href="#work"    class="btn btn-fill">View my work</a>
-        <a href="#contact" class="btn btn-sage">Get in touch</a>
-        <a href="#" id="resume-link" class="btn btn-ghost" style="display:inline-flex;align-items:center;gap:.5rem;" title="Download resume">
-          <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><rect x="1" y="1" width="10" height="12" rx="1.5"/><line x1="3.5" y1="4.5" x2="8.5" y2="4.5"/><line x1="3.5" y1="7" x2="8.5" y2="7"/><line x1="3.5" y1="9.5" x2="6" y2="9.5"/></svg>
-          Résumé
-        </a>
+      <div style="
+        font-family:'Libre Baskerville',serif;
+        font-size:14px;
+        color:var(--mocha);
+        font-style:italic;
+        margin-top:.5rem;
+        line-height:1.7;
+      ">
+        Like a good recipe, I test, refine, and combine the right elements to make it work.
       </div>
     </div>
 
-    <div class="hero-bottom">
+    <nav style="margin-top:2.5rem;border-top:1px solid var(--kraft);max-width:780px;">
+      <a href="#about" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--kraft);text-decoration:none;color:var(--ink);transition:padding .2s;" onmouseover="this.style.paddingLeft='.6rem'" onmouseout="this.style.paddingLeft='0'">
+        <span style="display:flex;align-items:baseline;gap:1.1rem;">
+          <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.22em;color:var(--kraft);min-width:18px;">01</span>
+          <span style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,26px);font-weight:700;color:var(--ink);">About me <em style="font-weight:400;font-style:normal;color:var(--mocha);">
+        </span>
+        <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.2em;color:var(--kraft);">↓</span>
+      </a>
+      <a href="#work" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--kraft);text-decoration:none;color:var(--ink);transition:padding .2s;" onmouseover="this.style.paddingLeft='.6rem'" onmouseout="this.style.paddingLeft='0'">
+        <span style="display:flex;align-items:baseline;gap:1.1rem;">
+          <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.22em;color:var(--kraft);min-width:18px;">02</span>
+          <span style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,26px);font-weight:700;color:var(--ink);">Selected work <em style="font-weight:400;font-style:normal;color:var(--mocha);">
+        </span>
+        <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.2em;color:var(--kraft);">↓</span>
+      </a>
+      <a href="#skills" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--kraft);text-decoration:none;color:var(--ink);transition:padding .2s;" onmouseover="this.style.paddingLeft='.6rem'" onmouseout="this.style.paddingLeft='0'">
+        <span style="display:flex;align-items:baseline;gap:1.1rem;">
+          <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.22em;color:var(--kraft);min-width:18px;">03</span>
+          <span style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,26px);font-weight:700;color:var(--ink);">Skills & Tools <em style="font-weight:400;font-style:normal;color:var(--mocha);">
+        </span>
+        <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.2em;color:var(--kraft);">↓</span>
+      </a>
+      <a href="#contact" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--kraft);text-decoration:none;color:var(--ink);transition:padding .2s;" onmouseover="this.style.paddingLeft='.6rem'" onmouseout="this.style.paddingLeft='0'">
+        <span style="display:flex;align-items:baseline;gap:1.1rem;">
+          <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.22em;color:var(--kraft);min-width:18px;">04</span>
+          <span style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,26px);font-weight:700;color:var(--ink);">Contact / Hire me <em style="font-weight:400;font-style:italic;color:var(--mocha);">
+        </span>
+        <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.2em;color:var(--kraft);">↓</span>
+      </a>
+    </nav>
+
+    <div class="hero-btns" style="margin-top:2.2rem;">
+      <a href="#work" class="btn btn-fill">View my work</a>
+      <a href="#contact" class="btn btn-sage">Get in touch</a>
+    </div>
+
+    <div class="hero-bottom" style="margin-top:1.4rem;max-width:780px;">
       <div><span class="stat-label">Status</span><span class="stat-val">Seeking roles</span></div>
       <div><span class="stat-label">Education</span><span class="stat-val">Bryn Mawr + Berkeley</span></div>
       <div><span class="stat-label">Baking now</span><span class="stat-val">Shokupan 🍞</span></div>
     </div>
   </div>
 
-  <!-- RIGHT: MAC + deco -->
-  <div class="hero-right">
+  <div class="hero-right" style="display:flex;justify-content:flex-end;align-items:flex-start;padding-left:4rem;">
+    <div style="
+      width:300px;
+      aspect-ratio:9/16;
+      border:1.5px solid var(--kraft);
+      background:var(--paper-mid);
+      position:relative;
+      overflow:hidden;
+      border-radius:2px;
+    ">
+      <div style="
+        position:absolute;
+        top:-6px;
+        left:50%;
+        transform:translateX(-50%);
+        width:90px;
+        height:12px;
+        background:rgba(160,72,48,.25);
+        border-radius:2px;
+        z-index:2;
+      "></div>
 
-    <!-- PHOTO PLACEHOLDER -->
-    <div id="photo-area" style="position:relative;width:100%;aspect-ratio:4/3;max-height:200px;border:1.5px solid var(--kraft);background:var(--paper-dark);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.6rem;">
-      <!-- washi tape across top of photo -->
-      <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:80px;height:14px;background:rgba(160,72,48,.22);border-radius:2px;z-index:5;"></div>
-      <!-- placeholder content — replace src with your photo URL -->
-      <img id="profile-photo" src="profile pic1.jpg" alt="Liujun Chen"
-        style="width:100%;height:100%;object-fit:cover;display:none;"
-        onload="this.style.display='block';this.parentElement.querySelector('.photo-placeholder').style.display='none';"
-      />
-      <!-- shown when no photo loaded -->
-      <div class="photo-placeholder" style="display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1rem;">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="var(--kraft)" stroke-width="1" stroke-linecap="round">
-          <circle cx="16" cy="12" r="6"/>
-          <path d="M4 28 C4 20 28 20 28 28"/>
-        </svg>
-        <span style="font-family:'Special Elite',serif;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--kraft);">Your photo here</span>
-        <span style="font-family:'DM Sans',sans-serif;font-size:10px;color:var(--faded);text-align:center;max-width:160px;">Replace <code style="font-size:9px;background:rgba(0,0,0,.06);padding:1px 4px;">src=""</code> in the img tag with your photo URL</span>
-      </div>
-      <!-- corner ornaments -->
-      <div style="position:absolute;top:6px;left:6px;width:12px;height:12px;border-top:1.5px solid var(--kraft);border-left:1.5px solid var(--kraft);opacity:.6;"></div>
-      <div style="position:absolute;top:6px;right:6px;width:12px;height:12px;border-top:1.5px solid var(--kraft);border-right:1.5px solid var(--kraft);opacity:.6;"></div>
-      <div style="position:absolute;bottom:6px;left:6px;width:12px;height:12px;border-bottom:1.5px solid var(--kraft);border-left:1.5px solid var(--kraft);opacity:.6;"></div>
-      <div style="position:absolute;bottom:6px;right:6px;width:12px;height:12px;border-bottom:1.5px solid var(--kraft);border-right:1.5px solid var(--kraft);opacity:.6;"></div>
+      <img src="profile2.jpg" alt="Liujun Chen" style="
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center;
+      ">
+
+      <div style="position:absolute;top:10px;left:10px;width:16px;height:16px;border-top:1.5px solid var(--kraft);border-left:1.5px solid var(--kraft);"></div>
+      <div style="position:absolute;top:10px;right:10px;width:16px;height:16px;border-top:1.5px solid var(--kraft);border-right:1.5px solid var(--kraft);"></div>
+      <div style="position:absolute;bottom:10px;left:10px;width:16px;height:16px;border-bottom:1.5px solid var(--kraft);border-left:1.5px solid var(--kraft);"></div>
+      <div style="position:absolute;bottom:10px;right:10px;width:16px;height:16px;border-bottom:1.5px solid var(--kraft);border-right:1.5px solid var(--kraft);"></div>
     </div>
+  </div>
 
-    <!-- mac label -->
-    <div class="mac-label-row" style="margin-top:0;">
-      <span class="t-label" style="color:var(--mocha);">Workstation No. 01</span>
-    </div>
-
-    <!-- VINTAGE MAC -->
-    <div style="position:relative;">
-      <!-- washi tapes over top of mac -->
-      <div class="washi" style="width:100px;position:absolute;top:-8px;left:8px;transform:rotate(-2deg);background:rgba(160,72,48,.22);z-index:12;"></div>
-      <div class="washi" style="width:64px;position:absolute;top:-8px;left:96px;background:rgba(184,160,124,.32);transform:rotate(1.5deg);z-index:12;"></div>
-      <div class="mac-casing">
-        <div class="mac-bezel">
-          <div class="mac-screen">
-            <div class="screen-inner">
-
-              <div class="screen-hed">Bakery Growth Report — Q4</div>
-
-              <!-- BREAD BAR CHART -->
-              <div class="screen-chart">
-
-                <!-- Jan — shokupan -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="11" height="9" viewBox="0 0 11 9" fill="none" style="opacity:.6;">
-                        <rect x=".5" y="3" width="10" height="5.5" rx="1.5" fill="#C4A060"/>
-                        <path d="M.5 5 Q5.5 .5 10.5 5" fill="#A07020"/>
-                        <circle cx="3.5" cy="6"   r=".65" fill="rgba(80,50,10,.32)"/>
-                        <circle cx="6.2" cy="5.2" r=".55" fill="rgba(80,50,10,.28)"/>
-                        <circle cx="8.5" cy="6.5" r=".6"  fill="rgba(80,50,10,.3)"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b1"></div>
-                  </div>
-                  <div class="sc-xlab">J</div>
-                </div>
-
-                <!-- Feb — bagel -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="11" height="9" viewBox="0 0 11 9" fill="none" style="opacity:.62;">
-                        <ellipse cx="5.5" cy="4.5" rx="4.8" ry="3.8" fill="none" stroke="#C4A060" stroke-width="2.6"/>
-                        <ellipse cx="5.5" cy="4.5" rx="4.8" ry="3.8" fill="none" stroke="#D4A840" stroke-width="1.2"/>
-                        <ellipse cx="5.5" cy="4.5" rx="2"   ry="1.4" fill="#2C1E10"/>
-                        <ellipse cx="3"   cy="1.5" rx=".7" ry=".35" transform="rotate(-25 3 1.5)"    fill="#9A7020"/>
-                        <ellipse cx="7.5" cy="1"   rx=".65" ry=".3"  transform="rotate(10 7.5 1)"    fill="#9A7020"/>
-                        <ellipse cx="9.8" cy="3.5" rx=".7" ry=".35"  transform="rotate(50 9.8 3.5)"  fill="#9A7020"/>
-                        <ellipse cx="9"   cy="7.2" rx=".65" ry=".3"  transform="rotate(115 9 7.2)"   fill="#9A7020"/>
-                        <ellipse cx="2.8" cy="7.5" rx=".7" ry=".35"  transform="rotate(-130 2.8 7.5)" fill="#9A7020"/>
-                        <ellipse cx="1.2" cy="4"   rx=".65" ry=".3"  transform="rotate(-80 1.2 4)"   fill="#9A7020"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b2"></div>
-                  </div>
-                  <div class="sc-xlab">F</div>
-                </div>
-
-                <!-- Mar — shokupan -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="11" height="9" viewBox="0 0 11 9" fill="none" style="opacity:.55;">
-                        <rect x=".5" y="3" width="10" height="5.5" rx="1.5" fill="#C4A060"/>
-                        <path d="M.5 5 Q5.5 .5 10.5 5" fill="#A07020"/>
-                        <circle cx="3.5" cy="6.2" r=".62" fill="rgba(80,50,10,.3)"/>
-                        <circle cx="6.5" cy="5.2" r=".55" fill="rgba(80,50,10,.26)"/>
-                        <circle cx="8.8" cy="6.8" r=".6"  fill="rgba(80,50,10,.28)"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b3"></div>
-                  </div>
-                  <div class="sc-xlab">M</div>
-                </div>
-
-                <!-- Apr — croissant (tallest) -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="13" height="9" viewBox="0 0 13 9" fill="none" style="opacity:.68;">
-                        <path d="M1.5 8 C1 5 2.5 1.5 5 1 C6.5 .5 7 2.5 6.5 4 C6 2 7 .5 8.5 1 C11 1.5 12 5 11.5 8" fill="#C4A060" stroke="#9A7020" stroke-width=".7"/>
-                        <path d="M2.5 6 Q6.5 3.5 10.5 6"   fill="none" stroke="#A07020" stroke-width=".8" stroke-linecap="round"/>
-                        <path d="M2 7.5 Q6.5 5.5 11 7.5"   fill="none" stroke="#A07020" stroke-width=".6" stroke-linecap="round" opacity=".6"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b4"></div>
-                  </div>
-                  <div class="sc-xlab">A</div>
-                </div>
-
-                <!-- May — bagel -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="11" height="9" viewBox="0 0 11 9" fill="none" style="opacity:.58;">
-                        <ellipse cx="5.5" cy="4.5" rx="4.8" ry="3.8" fill="none" stroke="#C4A060" stroke-width="2.6"/>
-                        <ellipse cx="5.5" cy="4.5" rx="4.8" ry="3.8" fill="none" stroke="#D4A840" stroke-width="1.2"/>
-                        <ellipse cx="5.5" cy="4.5" rx="2"   ry="1.4" fill="#2C1E10"/>
-                        <ellipse cx="3"   cy="1.5" rx=".7" ry=".35" transform="rotate(-25 3 1.5)"    fill="#9A7020"/>
-                        <ellipse cx="7.5" cy="1"   rx=".65" ry=".3"  transform="rotate(10 7.5 1)"    fill="#9A7020"/>
-                        <ellipse cx="9.8" cy="3.5" rx=".7" ry=".35"  transform="rotate(50 9.8 3.5)"  fill="#9A7020"/>
-                        <ellipse cx="9"   cy="7.2" rx=".65" ry=".3"  transform="rotate(115 9 7.2)"   fill="#9A7020"/>
-                        <ellipse cx="2.8" cy="7.5" rx=".7" ry=".35"  transform="rotate(-130 2.8 7.5)" fill="#9A7020"/>
-                        <ellipse cx="1.2" cy="4"   rx=".65" ry=".3"  transform="rotate(-80 1.2 4)"   fill="#9A7020"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b5"></div>
-                  </div>
-                  <div class="sc-xlab">M</div>
-                </div>
-
-                <!-- Jun — baguette -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="13" height="7" viewBox="0 0 13 7" fill="none" style="opacity:.55;">
-                        <path d="M1.5 5.5 C1 4 1.5 1.5 3 1 Q6.5 .2 10 1 C11.5 1.5 12 3.5 11.5 5.5 Q6.5 6.8 1.5 5.5Z" fill="#C4A060" stroke="#9A7020" stroke-width=".7"/>
-                        <line x1="4"   y1="1.5" x2="3.2" y2="5.8" stroke="#9A7020" stroke-width=".55" stroke-linecap="round" opacity=".7"/>
-                        <line x1="6.5" y1="1"   x2="5.7" y2="5.8" stroke="#9A7020" stroke-width=".55" stroke-linecap="round" opacity=".7"/>
-                        <line x1="9"   y1="1.5" x2="8.2" y2="5.5" stroke="#9A7020" stroke-width=".55" stroke-linecap="round" opacity=".7"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b6"></div>
-                  </div>
-                  <div class="sc-xlab">J</div>
-                </div>
-
-                <!-- Jul — cinnamon roll -->
-                <div class="sc-col">
-                  <div class="sc-bar-wrap">
-                    <div class="sc-bread-icon">
-                      <svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="opacity:.65;">
-                        <circle cx="5.5" cy="5.5" r="4.8" fill="#C4A060" stroke="#9A7020" stroke-width=".7"/>
-                        <circle cx="5.5" cy="5.5" r="3.5" fill="none" stroke="#9A7020" stroke-width="1.1" opacity=".55"/>
-                        <circle cx="5.5" cy="5.5" r="2"   fill="none" stroke="#D4A840" stroke-width="1"   opacity=".6"/>
-                        <circle cx="5.5" cy="5.5" r=".8"  fill="#D4A840" opacity=".75"/>
-                        <circle cx="3.2" cy="2.5" r=".45" fill="rgba(255,245,210,.65)"/>
-                        <circle cx="7"   cy="2"   r=".4"  fill="rgba(255,245,210,.6)"/>
-                        <circle cx="9"   cy="4.5" r=".45" fill="rgba(255,245,210,.6)"/>
-                      </svg>
-                    </div>
-                    <div class="sc-bar b7"></div>
-                  </div>
-                  <div class="sc-xlab">J</div>
-                </div>
-
-              </div>
-
-              <div class="screen-axis"></div>
-
-              <div class="screen-rows">
-                <div class="screen-row">
-                  CTR&nbsp;
-                  <div class="screen-row-bar" style="width:46%;"></div>
-                  4.2%
-                </div>
-                <div class="screen-row">
-                  ROAS
-                  <div class="screen-row-bar" style="width:60%;"></div>
-                  3.8x
-                </div>
-                <div class="screen-row">
-                  RET&nbsp;
-                  <div class="screen-row-bar" style="width:34%;"></div>
-                  2.1x<span class="screen-cursor"></span>
-                </div>
-              </div>
-
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mac-base">
-        <div style="display:flex;align-items:center;gap:5px;">
-          <svg width="11" height="13" viewBox="0 0 11 13" fill="none"><path d="M8.5 0 C7.7 1 6.8 1.4 5.5 1.4 C4.2 1.4 3.3.6 2.5 0 C1 1.4 0 3.2 0 5.5 C0 9.2 2.2 13 5.5 13 C8.8 13 11 9.2 11 5.5 C11 3.2 10 1.4 8.5 0Z" fill="rgba(106,79,53,.28)"/></svg>
-          <span class="mac-brand">Macintosh Classic</span>
-        </div>
-        <div class="mac-floppy"></div>
-        <div class="mac-dots">
-          <div class="mac-dot"></div><div class="mac-dot"></div><div class="mac-dot"></div>
-          <div class="mac-dot"></div><div class="mac-dot"></div>
-        </div>
-      </div>
-    </div><!-- /mac -->
-
-
-  </div><!-- /hero-right -->
 </div>
 </div>
 </section>
-
-<!-- ══════════════════════════════════════════
-     EDUCATION BAND — sticker/tape style
-══════════════════════════════════════════ -->
-<div style="border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);background:var(--paper-dark);position:relative;z-index:10;">
-  <div style="max-width:1080px;margin:0 auto;padding:0 2.5rem;">
-
-    <!-- washi tape strip top -->
-    <div style="position:absolute;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,rgba(160,72,48,.18) 0,rgba(160,72,48,.18) 32px,transparent 32px,transparent 48px,rgba(184,160,124,.2) 48px,rgba(184,160,124,.2) 80px,transparent 80px,transparent 96px);"></div>
-
-    <!-- EDUCATION label row -->
-    <div style="padding:1.8rem 0 0;display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem;">
-      <span style="font-family:'Special Elite',serif;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--rust);">Education</span>
-      <div style="flex:1;border-top:1px solid var(--kraft);opacity:.45;"></div>
-    </div>
-
-    <!-- edu items stacked, same spacing, ruled line between -->
-    <div style="display:flex;flex-direction:column;gap:0;padding-bottom:1.8rem;">
-
-      <!-- item 1 -->
-      <div style="display:grid;grid-template-columns:1fr auto;align-items:start;padding:1.4rem 0;border-bottom:1px solid rgba(184,160,124,.35);position:relative;">
-        <!-- tape strip on left edge -->
-        <div style="position:absolute;top:1rem;left:-8px;width:16px;height:28px;background:rgba(160,72,48,.14);border-radius:2px;transform:rotate(-1deg);"></div>
-        <div>
-          <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:17px;color:var(--ink);display:block;margin-bottom:.2rem;">Bryn Mawr College</span>
-          <span style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--mocha);display:block;margin-bottom:.35rem;">B.A. Psychology</span>
-          <span style="font-family:'Special Elite',serif;font-size:9.5px;letter-spacing:.18em;color:var(--kraft);">2021 — 2025</span>
-        </div>
-        <!-- sticker badge -->
-        <div style="margin-top:.3rem;">
-          <span style="font-family:'Special Elite',serif;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid var(--kraft);color:var(--mocha);padding:3px 10px;background:var(--paper);display:inline-block;transform:rotate(.8deg);">Undergrad</span>
-        </div>
-      </div>
-
-      <!-- item 2 -->
-      <div style="display:grid;grid-template-columns:1fr auto;align-items:start;padding:1.4rem 0;border-bottom:1px solid rgba(184,160,124,.35);position:relative;">
-        <div style="position:absolute;top:1rem;left:-8px;width:16px;height:28px;background:rgba(184,160,124,.2);border-radius:2px;transform:rotate(1.5deg);"></div>
-        <div>
-          <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:17px;color:var(--ink);display:block;margin-bottom:.2rem;">UC Berkeley</span>
-          <span style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--mocha);display:block;margin-bottom:.35rem;">M.A. Computational Social Science</span>
-          <span style="font-family:'Special Elite',serif;font-size:9.5px;letter-spacing:.18em;color:var(--kraft);">2025 — 2026</span>
-        </div>
-        <div style="margin-top:.3rem;">
-          <span style="font-family:'Special Elite',serif;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid var(--kraft);color:var(--mocha);padding:3px 10px;background:var(--paper);display:inline-block;transform:rotate(-.6deg);">Graduate</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 <!-- ORN DIVIDER 1 -->
 <div class="orn-band">
@@ -1342,12 +1135,14 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
   </div>
   <div class="about-grid">
     <div class="about-main">
-      <h2 class="section-h">About <em>me</em></h2>
-      <p class="section-intro">An aspiring Marketing Growth Analyst with a deep curiosity for why people make the choices they do.</p>
+      <h2 class="section-h">About me <em></em></h2>
+      <p class="section-intro">An aspiring Marketing Growth Analyst with a deep curiosity for why people make the choices.</p>
       <hr class="hr--dashed" style="margin-bottom:1.8rem;">
       <div class="t-body" style="max-width:520px;">
-        <p>My work sits at the intersection of data and human behavior — building dashboards, dissecting ad campaigns, and translating complex patterns into clear, actionable strategy.</p>
-        <p style="margin-top:1rem;">Off the clock, I'm an obsessive home baker. My thing is shokupan (Japanese milk bread) and sesame bagels — both demand the same precision and patience I bring to every data analysis.</p>
+        <p>I studied psychology at Bryn Mawr College and now explore data and human behavior through UC Berkeley’s Master’s in Computational Social Science.
+
+My work sits at the intersection of data and human behavior — shaped by experience as a marketing and growth analyst across B2B and consumer tech startups. I’ve worked on CRM management, paid media campaigns, and marketing analytics, as well as consumer research and insights in a CPG environment. I enjoy translating messy data into clear decisions, whether that’s optimizing a campaign or uncovering what actually drives user behavior.</p>
+        <p style="margin-top:1rem;">Off the clock, I’m an obsessive home baker. My specialty is shokupan (Japanese milk bread) and sesame bagels — both demand the same precision and patience I bring to every analysis.</p>
       </div>
 
       <!-- bagel sticker near skills tags -->
@@ -1473,9 +1268,9 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
     </div>
     <div style="position:relative;display:inline-block;margin-bottom:.3rem;">
       <div style="position:absolute;top:-4px;left:-6px;right:-6px;height:10px;background:rgba(244,239,227,.08);border-radius:2px;transform:rotate(.4deg);z-index:0;"></div>
-      <h2 class="port-section-h" style="position:relative;z-index:1;">Selected <em>Work</em></h2>
+      <h2 class="port-section-h" style="position:relative;z-index:1;">Selected work <em></em></h2>
     </div>
-    <p style="font-family:'Libre Baskerville',serif;font-style:italic;font-size:13px;line-height:1.85;color:var(--mocha);margin-top:1rem;margin-bottom:2.5rem;max-width:480px;">Projects spanning data visualization, growth analytics, paid media, and consumer research.</p>
+    <p style="font-family:'Libre Baskerville',serif;font-style:italic;font-size:13px;line-height:1.85;color:var(--mocha);margin-top:1rem;margin-bottom:2.5rem;max-width:480px;">Projects and previous work samples spanning data visualization, growth analytics, paid media, and consumer research.</p>
 
     <div class="tab-bar">
       <button class="tab-btn active" onclick="switchTab(event,'all')">All Work</button>
@@ -1500,8 +1295,16 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
               <span class="proj-type">Data Viz</span>
             </div>
             <div class="proj-body">
-              <div class="proj-name">Consumer Behavior Dashboard</div>
-              <div class="proj-desc">Recreated a course project into a Tableau dashboard analyzing Amazon gift card sales trends and customer segmentation before and after COVID-19.</div>
+              <div class="proj-name">Amazon Gift Card Consumer Behavior Analysis (Project)</div>
+              <div class="proj-desc">
+
+<ul>
+  <li>Built a Tableau dashboard analyzing Amazon gift card sales data and customer segments</li>
+  <li>Identified retention as the primary revenue driver, shifting focus from acquisition to lifecycle strategy</li>
+</ul>
+
+
+</div>
               <div class="proj-chips"><span class="chip">Tableau</span><span class="chip">Excel</span><span class="chip">SQL</span></div>
             </div>
           </div>
@@ -1523,8 +1326,11 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
               <span class="proj-type">Paid Media</span>
             </div>
             <div class="proj-body">
-              <div class="proj-name">Paid Ads Performance Analysis</div>
-              <div class="proj-desc">Analyzed paid campaign performance for JOOPI across creative testing, acquisition trends, and funnel efficiency.</div>
+              <div class="proj-name">JOOPI — Paid Marketing Campaign Optimization</div>
+              <div class="proj-desc"><ul>
+  <li>Executed multi-channel campaigns (Meta, Google, email) for JOOPI and ran A/B tests on creatives, messaging, and audience segments</li>
+  <li>Increased app downloads by 70% and improved campaign efficiency through iterative optimization</li>
+</ul></div>
               <div class="proj-chips"><span class="chip">Meta Ads</span><span class="chip">Google Ads</span><span class="chip">Campaign Analytics</span></div>
             </div>
           </div>
@@ -1546,8 +1352,11 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
               <span class="proj-type">Research</span>
             </div>
             <div class="proj-body">
-              <div class="proj-name">Market Research Report</div>
-              <div class="proj-desc">Developed consumer insight recommendations through survey analysis, competitor mapping, and social listening for Mead Johnson Nutrition.</div>
+              <div class="proj-name">Mead Johnson Nutrition — Market Research & Brand Positioning</div>
+              <div class="proj-desc"><ul>
+  <li>Synthesized social listening, survey data, and competitor campaigns to evaluate brand perception and user satisfaction</li>
+  <li>Improved perception on key selling points by 16% by refining messaging and social media positioning</li>
+</ul></div>
               <div class="proj-chips"><span class="chip">Consumer Insight</span><span class="chip">Survey Research</span><span class="chip">Social Listening</span></div>
             </div>
           </div>
@@ -1564,11 +1373,14 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
                 <line x1="28.5" y1="16" x2="35.5" y2="16" stroke="#A04830"/>
                 <path d="M14 8 C14 8 17.5 4 23 6 C23 6 18.5 8 20 13 C20 13 16.5 9.5 14 8Z" fill="rgba(184,160,124,.15)" stroke="#A04830" stroke-width="1"/>
               </svg>
-              <span class="proj-type">Sentiment Analysis</span>
+              <span class="proj-type">Spotify Sentiment Analysis Project</span>
             </div>
             <div class="proj-body">
               <div class="proj-name">Spotify Sentiment Analysis</div>
-              <div class="proj-desc">Applied sentiment analysis, NLP, and topic modeling to Spotify reviews to identify key user concerns and predict app ratings from textual feedback.</div>
+              <div class="proj-desc"><ul>
+  <li>Applied NLP methods (VADER, TF-IDF, topic modeling) to analyze large-scale Spotify user reviews</li>
+  <li>Identified key drivers of satisfaction and linked sentiment patterns to rating outcomes</li>
+</ul></div>
               <div class="proj-chips"><span class="chip">Python</span><span class="chip">NLP</span><span class="chip">Topic Modeling</span></div>
             </div>
           </div>
@@ -1619,7 +1431,7 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
     </div>
     <div style="position:relative;display:inline-block;margin-bottom:.3rem;">
       <div style="position:absolute;top:-4px;left:-6px;right:-6px;height:10px;background:rgba(160,72,48,.15);border-radius:2px;transform:rotate(.3deg);z-index:0;"></div>
-      <h2 class="section-h" style="position:relative;z-index:1;">Skills &amp; <em>Tools</em></h2>
+      <h2 class="section-h" style="position:relative;z-index:1;">Skills &amp Tools <em></em></h2>
     </div>
     <hr class="hr" style="margin:1.5rem 0 2rem;">
 
@@ -1712,7 +1524,7 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
     <div style="text-align:center;">
       <div style="position:relative;display:inline-block;margin-bottom:.3rem;">
         <div style="position:absolute;top:-4px;left:-6px;right:-6px;height:10px;background:rgba(184,160,124,.22);border-radius:2px;transform:rotate(-.3deg);z-index:0;"></div>
-        <h2 class="section-h" style="position:relative;z-index:1;">Let's <em>talk</em></h2>
+        <h2 class="section-h" style="position:relative;z-index:1;">Let's talk <em></em></h2>
       </div>
     </div>
     <hr class="hr" style="max-width:60px;margin:1.2rem auto 1.8rem;">
@@ -1734,7 +1546,7 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
     <div class="contact-grid">
       <a href="mailto:cynthiac5280@outlook.com" class="c-item">
         <svg width="15" height="13" viewBox="0 0 15 13" fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"><rect x="1" y="1" width="13" height="11" rx="1.5"/><path d="M1 3 L7.5 7.5 L14 3"/></svg>
-        <span style="flex:1;"><span class="c-main">Email</span><span class="c-sub">cynthiac5280@outlook.com</span></span>
+        <span style="flex:1;"><span class="c-main">Email</span><span class="c-sub"><span class="__cf_email__" data-cfemail="d1b2a8bfa5b9b8b0b2e4e3e9e191bea4a5bdbebebaffb2bebc">[cynthiac5280@outlook.com]</span></span></span>
         <span class="c-arr">↗</span>
       </a>
       <a href="http://www.linkedin.com/in/liujun-cchen" class="c-item">
@@ -1764,7 +1576,7 @@ footer { background:var(--ink); border-top:2px solid #111; padding:1.5rem 2.5rem
   <span class="footer-copy">Marketing Growth Analyst &nbsp;✦&nbsp; Open to Work &nbsp;✦&nbsp; 2025</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function switchTab(e, id) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1969,9 +1781,4 @@ function switchTab(e, id) {
 <svg style="position:absolute;top:55%;left:95%;opacity:.1;" width="10" height="10" viewBox="0 0 10 10" stroke="#B8A07C" stroke-width=".9" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
 <svg style="position:absolute;top:70%;left:53%;opacity:.09;" width="8" height="8" viewBox="0 0 8 8" stroke="#B8A07C" stroke-width=".8" stroke-linecap="round"><line x1="4" y1="1" x2="4" y2="7"/><line x1="1" y1="4" x2="7" y2="4"/></svg>
 <svg style="position:absolute;top:82%;left:95%;opacity:.1;" width="10" height="10" viewBox="0 0 10 10" stroke="#B8A07C" stroke-width=".9" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
-<svg style="position:absolute;top:97%;left:64%;opacity:.09;" width="8" height="8" viewBox="0 0 8 8" stroke="#B8A07C" stroke-width=".8" stroke-linecap="round"><line x1="4" y1="1" x2="4" y2="7"/><line x1="1" y1="4" x2="7" y2="4"/></svg>
-
-</div>
-
-</body>
-</html>
+<svg st
