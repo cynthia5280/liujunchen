@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liujun Chen — Marketing Growth Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────── */
+:root {
+  --cream:       #FAF6F0;
+  --cream-mid:   #F2EAE0;
+  --cream-dark:  #E8DDD2;
+  --blush:       #E8B4B8;
+  --blush-dark:  #D4888E;
+  --blush-text:  #8C3E4A;
+  --taupe:       #C4A898;
+  --taupe-text:  #7A5848;
+  --body:        #5A3828;
+  --ink:         #3A2820;
+  --border:      #E4D0C4;
+  --faint:       rgba(58,40,32,0.07);
+}
+
+/* ─── RESET ──────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--cream);
+  color: var(--body);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ─── REDUCED MOTION ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ─── ANIMATIONS ─────────────────────────── */
+@keyframes ticker      { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes breadmarquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes blink       { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes spin        { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes spinr       { from{transform:rotate(0deg)} to{transform:rotate(-360deg)} }
+@keyframes fadeup      { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes wobble      { 0%,100%{transform:rotate(-2deg)} 50%{transform:rotate(2deg)} }
+@keyframes float       { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes barrise     { from{opacity:0.5} to{opacity:1} }
+
+/* ─── TYPE UTILITIES ─────────────────────── */
+.t-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--taupe-text);
+}
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--ink); line-height: 1.05;
+  text-wrap: balance;
+}
+.section-rule { display:flex; align-items:center; gap:.8rem; margin-bottom:1.2rem; }
+.section-rule::after { content:''; flex:1; border-top:1px solid var(--border); }
+.hr { border:none; border-top:1px solid var(--border); }
+
+/* ─── CHIP / TAG ─────────────────────────── */
+.chip {
+  font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 0.06em;
+  padding: .18rem .55rem; border: 1px solid var(--border); color: var(--taupe-text);
+}
+.tag {
+  font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: .28rem .7rem;
+  border: 1px solid var(--border); color: var(--taupe-text);
+  background: transparent; display: inline-block; cursor: default;
+  transition: all .15s;
+}
+.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+/* ─── TICKER ─────────────────────────────── */
+.ticker { overflow:hidden; white-space:nowrap; padding:.5rem 0; background:var(--ink); position:relative; z-index:10; }
+.ticker-track {
+  display:inline-block; animation:ticker 32s linear infinite;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.18em;
+  color:rgba(250,246,240,.6);
+}
+.ticker-track span { margin:0 2rem; }
+.ticker-track .sep { color:var(--blush); }
+
+/* ─── NAV ────────────────────────────────── */
+.nav { position:sticky; top:0; z-index:100; background:rgba(250,246,240,.96); backdrop-filter:blur(8px); border-bottom:1.5px solid var(--ink); }
+.nav-inner { max-width:1080px; margin:0 auto; padding:0 2.5rem; display:flex; align-items:center; justify-content:space-between; height:52px; }
+.nav-logo { font-family:'Playfair Display',serif; font-weight:700; font-size:17px; color:var(--ink); }
+.nav-links { display:flex; }
+.nav-links a {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--taupe-text); text-decoration:none; padding:0 1rem; height:52px;
+  display:flex; align-items:center; transition:color .15s;
+}
+.nav-links a:hover { color:var(--ink); }
+.nav-badge {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  background:var(--blush); color:var(--blush-text); padding:.22rem .75rem;
+  display:flex; align-items:center; gap:.4rem;
+}
+.blink { width:5px; height:5px; border-radius:50%; background:var(--blush-text); animation:blink 1.4s step-end infinite; }
+
+/* ─── HERO ───────────────────────────────── */
+.hero { border-bottom:2px solid var(--ink); position:relative; z-index:10; overflow:hidden; }
+.hero-grid { display:grid; grid-template-columns:minmax(0,1fr) 420px; gap:3rem; align-items:start; }
+.hero-left { padding:3.5rem 0; display:flex; flex-direction:column; gap:1.6rem; min-width:0; }
+.hero-eyebrow {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--blush-text); display:flex; align-items:center; gap:.7rem;
+}
+.hero-eyebrow::before { content:''; width:22px; height:1px; background:var(--blush-dark); }
+.hero-name {
+  font-family:'Playfair Display',serif; font-weight:900;
+  font-size:clamp(50px,7.5vw,92px);
+  line-height:.92; color:var(--ink); letter-spacing:-0.02em;
+  text-wrap:balance;
+}
+.hero-bio {
+  font-family:'DM Sans',sans-serif;
+  font-size:16px; line-height:1.7; color:var(--body); max-width:480px;
+}
+.hero-bio-sub {
+  font-family:'DM Sans',sans-serif; font-size:14px;
+  line-height:1.6; color:var(--taupe-text); max-width:460px;
+}
+.hero-nav { border-top:1px solid var(--border); max-width:640px; }
+.hero-nav-link {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.9rem 0; border-bottom:1px solid var(--border);
+  text-decoration:none; color:var(--ink); transition:padding .18s;
+}
+.hero-nav-link:hover { padding-left:.5rem; }
+.hero-nav-title {
+  font-family:'Playfair Display',serif; font-size:clamp(18px,2.2vw,24px);
+  font-weight:700; color:var(--ink);
+}
+.hero-nav-arr { font-size:11px; letter-spacing:.18em; color:var(--taupe); }
+.hero-btns { display:flex; gap:.8rem; }
+.btn {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  padding:.75rem 1.75rem; border:1.5px solid var(--ink);
+  text-decoration:none; display:inline-block; transition:all .15s;
+}
+.btn-fill { background:var(--ink); color:var(--cream); }
+.btn-fill:hover { background:var(--body); border-color:var(--body); }
+.btn-outline { background:transparent; color:var(--ink); }
+.btn-outline:hover { background:var(--blush); border-color:var(--blush); }
+.hero-bottom { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid var(--border); padding-top:1.2rem; gap:1rem; }
+.stat-label { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--taupe); display:block; margin-bottom:.2rem; }
+.stat-val { font-family:'Playfair Display',serif; font-style:normal; font-size:14px; color:var(--ink); }
+
+/* hero right */
+.hero-right { display:flex; justify-content:flex-end; align-items:flex-start; padding-top:3.5rem; padding-left:2rem; }
+.photo-frame { width:260px; aspect-ratio:4/5; border:1.5px solid var(--border); background:var(--cream-mid); position:relative; overflow:hidden; }
+.photo-frame img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.pc { position:absolute; width:16px; height:16px; }
+.pc.tl { top:8px; left:8px; border-top:1.5px solid var(--blush); border-left:1.5px solid var(--blush); }
+.pc.tr { top:8px; right:8px; border-top:1.5px solid var(--blush); border-right:1.5px solid var(--blush); }
+.pc.bl { bottom:8px; left:8px; border-bottom:1.5px solid var(--blush); border-left:1.5px solid var(--blush); }
+.pc.br { bottom:8px; right:8px; border-bottom:1.5px solid var(--blush); border-right:1.5px solid var(--blush); }
+
+/* ─── ORN DIVIDER ────────────────────────── */
+.orn-band { border-bottom:1px solid var(--border); background:var(--cream-mid); position:relative; z-index:10; }
+.orn { display:flex; align-items:center; justify-content:center; gap:.9rem; padding:.75rem 0; }
+.orn-cd  { animation:spin 16s linear infinite; display:inline-block; line-height:0; }
+.orn-cdr { animation:spinr 16s linear infinite; display:inline-block; line-height:0; }
+.orn-text { font-family:'Playfair Display',serif; font-size:13px; color:var(--taupe); letter-spacing:4px; }
+
+/* ─── ABOUT ──────────────────────────────── */
+.about-section { padding:5rem 0; position:relative; z-index:10; }
+.about-grid { display:grid; grid-template-columns:1fr 1px 240px; gap:0; }
+.about-main { padding-right:3rem; }
+.about-divider { background:var(--border); }
+.about-aside { padding-left:3rem; }
+.section-intro {
+  font-family:'DM Sans',sans-serif;
+  font-size:15px; line-height:1.75; color:var(--body);
+  margin-top:1rem; margin-bottom:2rem; max-width:520px; text-wrap:pretty;
+}
+.aside-box { border:1px solid var(--border); padding:1.2rem; background:var(--cream-mid); margin-bottom:1rem; position:relative; }
+.aside-box-lbl {
+  position:absolute; top:-.55rem; left:.9rem;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  background:var(--cream-mid); padding:0 .4rem; color:var(--blush-text);
+}
+.baking-box { border:1px dashed var(--border); padding:1.2rem; background:rgba(250,246,240,.5); position:relative; margin-bottom:1rem; }
+.baking-box .aside-box-lbl { background:var(--cream); color:var(--taupe-text); }
+.aside-list { list-style:none; margin-top:.2rem; }
+.aside-list li {
+  font-family:'DM Sans',sans-serif; font-size:13px; color:var(--body);
+  padding:.28rem 0; border-bottom:1px dotted rgba(196,168,152,.4);
+  display:flex; align-items:center; gap:.5rem;
+}
+.aside-list li:last-child { border:none; }
+.aside-list li::before { content:'◦'; color:var(--taupe); font-size:11px; }
+.bread-crumb-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.8rem; }
+.bct {
+  display:inline-flex; align-items:center; gap:.3rem;
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  padding:.28rem .7rem; border:1px dashed var(--border); color:var(--taupe-text);
+  background:rgba(250,246,240,.5);
+}
+.bct:nth-child(odd)  { transform:rotate(-1deg); }
+.bct:nth-child(even) { transform:rotate(.8deg); }
+
+/* ─── EDUCATION BAND ─────────────────────── */
+.edu-band { border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); background:var(--cream-mid); position:relative; z-index:10; }
+.edu-band-inner { max-width:1080px; margin:0 auto; padding:0 2.5rem; display:grid; grid-template-columns:120px 1fr 1fr; }
+.edu-col { padding:1.8rem 2rem 1.8rem 2rem; border-right:1px solid var(--border); }
+.edu-col:last-child { border-right:none; padding-left:2rem; padding-right:0; }
+.edu-col:first-child { padding-left:0; display:flex; align-items:center; padding-right:2.5rem; }
+.edu-label-vert { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--blush-text); }
+.edu-school { font-family:'Playfair Display',serif; font-weight:700; font-size:15px; color:var(--ink); display:block; }
+.edu-degree { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--body); display:block; }
+.edu-year { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.14em; color:var(--taupe-text); margin-top:.3rem; display:block; }
+
+/* ─── PORTFOLIO ──────────────────────────── */
+.port-section { background:var(--cream); padding:5rem 0; border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); position:relative; z-index:10; }
+.tab-bar { display:flex; border-bottom:1px solid var(--border); margin-bottom:2.5rem; }
+.tab-btn {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  padding:.7rem 1.2rem; color:var(--taupe); background:transparent; border:none; cursor:pointer;
+  border-bottom:2px solid transparent; margin-bottom:-1px; transition:all .15s;
+}
+.tab-btn:hover { color:var(--body); }
+.tab-btn.active { color:var(--ink); border-bottom-color:var(--blush-dark); }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; animation:fadeup .25s ease; }
+.proj-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.25rem; align-items:stretch; }
+.proj-link { text-decoration:none; color:inherit; display:block; height:100%; }
+.proj-card { background:var(--cream); transition:background .18s; display:flex; flex-direction:column; border:1px solid var(--border); height:100%; }
+.proj-card:hover { background:var(--cream-mid); }
+.proj-thumb { height:100px; display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border); position:relative; background:var(--cream-mid); }
+.proj-type { position:absolute; bottom:7px; left:9px; font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--taupe-text); }
+.proj-body { padding:1rem 1.1rem 1.2rem; flex:1; display:flex; flex-direction:column; }
+.proj-name { font-family:'Playfair Display',serif; font-size:14px; color:var(--ink); margin-bottom:.45rem; font-weight:600; line-height:1.3; }
+.proj-desc { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--body); line-height:1.6; margin-bottom:.8rem; }
+.proj-desc ul { padding-left:1.1rem; }
+.proj-desc li { margin-bottom:.3rem; }
+.proj-chips { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:auto; }
+
+/* ─── QUOTE ──────────────────────────────── */
+.quote-band {
+  padding:3.5rem 0; text-align:center;
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  background:var(--cream-mid); position:relative; z-index:10; overflow:hidden;
+}
+.quote-text {
+  font-family:'Playfair Display',serif; font-style:normal;
+  font-size:clamp(17px,2vw,22px); color:var(--ink);
+  line-height:1.55; max-width:560px; margin:0 auto .6rem; text-wrap:pretty;
+}
+.quote-attr { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--taupe-text); }
+
+/* ─── SKILLS ─────────────────────────────── */
+.skills-section { padding:5rem 0; position:relative; z-index:10; }
+.skills-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; border:1.5px solid var(--border); }
+.sk-card { padding:1.6rem 1.5rem; background:var(--cream); transition:background .15s; position:relative; border-top:3px solid var(--border); }
+.sk-card:nth-child(1) { border-top-color:var(--blush); }
+.sk-card:nth-child(2) { border-top-color:var(--blush-dark); }
+.sk-card:nth-child(3) { border-top-color:var(--taupe); }
+.sk-card:nth-child(4) { border-top-color:var(--blush); }
+.sk-card + .sk-card { border-left:1px solid var(--border); }
+.sk-card:hover { background:var(--cream-mid); }
+.sk-icon { margin-bottom:.8rem; }
+.sk-name { font-family:'Playfair Display',serif; font-style:normal; font-size:14px; color:var(--ink); margin-bottom:.9rem; }
+.sk-list { list-style:none; }
+.sk-list li { font-family:'DM Sans',sans-serif; font-size:13px; color:var(--body); padding:.28rem 0; border-bottom:1px dotted rgba(196,168,152,.35); display:flex; align-items:center; gap:6px; }
+.sk-list li:last-child { border:none; }
+.sk-accent { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.sk-card:nth-child(1) .sk-accent { background:var(--blush-dark); }
+.sk-card:nth-child(2) .sk-accent { background:var(--blush-dark); }
+.sk-card:nth-child(3) .sk-accent { background:var(--taupe-text); }
+.sk-card:nth-child(4) .sk-accent { background:var(--blush-dark); }
+.soft-tags { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; justify-content:center; }
+.soft-tag {
+  font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  padding:.28rem .75rem; border:1px dashed var(--border); color:var(--taupe-text);
+  background:rgba(250,246,240,.5);
+}
+.soft-tag:nth-child(odd)  { transform:rotate(-.8deg); }
+.soft-tag:nth-child(even) { transform:rotate(.7deg); }
+
+/* ─── CONTACT ────────────────────────────── */
+.contact-section { background:var(--cream-mid); border-top:1.5px solid var(--ink); padding:5rem 0; position:relative; z-index:10; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:.8rem; max-width:600px; margin:2rem auto 0; }
+.c-item {
+  display:flex; align-items:center; gap:.9rem; padding:.9rem 1.1rem;
+  border:1px solid var(--border); background:var(--cream);
+  text-decoration:none; color:var(--ink); transition:all .18s;
+}
+.c-item:hover { background:var(--ink); color:var(--cream); border-color:var(--ink); }
+.c-item:hover .c-sub { color:var(--blush); }
+.c-main { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.14em; text-transform:uppercase; display:block; }
+.c-sub { font-family:'DM Sans',sans-serif; font-size:12px; color:var(--taupe-text); display:block; transition:color .18s; }
+.c-arr { margin-left:auto; font-size:12px; color:var(--taupe); }
+.contact-note { font-family:'Playfair Display',serif; font-style:normal; font-size:15px; line-height:1.8; color:var(--body); text-align:center; max-width:520px; margin:0 auto; text-wrap:pretty; }
+
+/* ─── FOOTER ─────────────────────────────── */
+footer { background:var(--ink); border-top:2px solid #1A0E08; padding:1.5rem 2.5rem; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:10; }
+.footer-name { font-family:'Playfair Display',serif; font-style:normal; font-size:14px; color:rgba(250,246,240,.5); }
+.footer-copy { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:rgba(196,168,152,.5); }
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media(max-width:900px){
+  .hero-grid { grid-template-columns:1fr; }
+  .hero-right { padding-top:0; padding-left:0; justify-content:flex-start; }
+  .about-grid { grid-template-columns:1fr; }
+  .about-divider { display:none; }
+  .about-aside { padding-left:0; padding-top:2rem; }
+  .skills-grid { grid-template-columns:1fr 1fr; }
+  .edu-band-inner { grid-template-columns:1fr; }
+  .edu-col { border-right:none; border-bottom:1px solid var(--border); padding:1.5rem 0; }
+  .contact-grid { grid-template-columns:1fr; }
+  footer { flex-direction:column; gap:.5rem; text-align:center; }
+}
+@media(max-width:700px){
+  .proj-grid { grid-template-columns:1fr 1fr; }
+  .skills-grid { grid-template-columns:1fr; }
+  .hero-nav { max-width:100%; }
+}
+@media(max-width:500px){
+  .proj-grid { grid-template-columns:1fr; }
+}
+
+/* ─── VINYL PLAYER ───────────────────────── */
+.vinyl-section {
+  padding: 5rem 0;
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  background: var(--cream);
+  position: relative; z-index: 10;
+  overflow: hidden;
+}
+.vinyl-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 2.5rem;
+}
+.vinyl-stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 2.5rem;
+  position: relative;
+}
+
+/* ── LEFT: player ── */
+.vinyl-left {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+.vinyl-carousel {
+  position: relative; width: 320px; height: 320px;
+}
+.vinyl-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity .4s ease, transform .4s ease;
+  transform: translateX(40px);
+  pointer-events: none;
+}
+.vinyl-slide.active {
+  opacity: 1; transform: translateX(0); pointer-events: auto;
+}
+.vinyl-slide.exit-left  { opacity: 0; transform: translateX(-40px); }
+.vinyl-slide.exit-right { opacity: 0; transform: translateX(40px); }
+
+/* disc */
+.vinyl-disc {
+  width: 320px; height: 320px; border-radius: 50%;
+  background: var(--ink);
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 40px rgba(58,40,32,.18), 0 2px 8px rgba(58,40,32,.1);
+}
+.vinyl-disc.spinning { animation: vinylSpin 4s linear infinite; }
+@keyframes vinylSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* grooves */
+.vinyl-disc::before {
+  content: '';
+  position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at center,
+    transparent 0px,
+    transparent 3px,
+    rgba(255,255,255,.04) 3px,
+    rgba(255,255,255,.04) 4px
+  );
+}
+/* photo label */
+.vinyl-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px; border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--blush);
+  box-shadow: 0 0 0 2px rgba(232,180,184,.3);
+}
+.vinyl-label img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+}
+/* center hole */
+.vinyl-disc::after {
+  content: '';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--cream-mid);
+  box-shadow: 0 0 0 2px rgba(196,168,152,.4);
+  z-index: 2;
+}
+/* shadow under disc */
+.vinyl-shadow {
+  width: 260px; height: 24px; margin: 0 auto;
+  background: radial-gradient(ellipse at center, rgba(58,40,32,.18) 0%, transparent 70%);
+  position: relative; top: -4px;
+}
+
+/* tonearm */
+.vinyl-tonearm-wrap {
+  position: absolute;
+  top: -18px; right: -18px;
+  width: 120px; height: 140px;
+  pointer-events: none;
+  transform-origin: 88px 18px;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+.vinyl-tonearm-wrap.playing  { transform: rotate(-18deg); }
+.vinyl-tonearm-wrap.paused   { transform: rotate(0deg); }
+
+/* track info */
+.vinyl-info {
+  text-align: center; margin-top: 1.2rem; width: 320px;
+}
+.vinyl-title {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 20px; color: var(--ink); margin-bottom: .25rem;
+}
+.vinyl-artist {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  letter-spacing: .1em; color: var(--taupe-text);
+}
+
+/* progress bar */
+.vinyl-progress-wrap {
+  width: 320px; margin-top: 1rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.vinyl-time {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: .08em; color: var(--taupe); min-width: 28px;
+}
+.vinyl-progress {
+  flex: 1; height: 3px; background: var(--border);
+  position: relative; cursor: pointer; border-radius: 2px;
+}
+.vinyl-progress-fill {
+  height: 100%; background: var(--blush-dark);
+  border-radius: 2px; width: 0%; transition: width .25s linear;
+  position: relative;
+}
+.vinyl-progress-fill::after {
+  content: '';
+  position: absolute; right: -4px; top: 50%;
+  transform: translateY(-50%);
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--blush-dark);
+}
+
+/* controls */
+.vinyl-controls {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin-top: 1rem;
+}
+.v-btn {
+  background: none; border: none; cursor: pointer;
+  color: var(--taupe-text); padding: .3rem;
+  transition: color .15s, transform .15s;
+  line-height: 0;
+}
+.v-btn:hover { color: var(--ink); transform: scale(1.1); }
+.v-btn.play-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--blush-dark); color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, transform .15s;
+}
+.v-btn.play-btn:hover { background: var(--blush-text); transform: scale(1.05); }
+.v-btn.active { color: var(--blush-dark); }
+
+/* dot indicator */
+.vinyl-dots {
+  display: flex; gap: 8px; margin-top: 1.2rem; justify-content: center;
+}
+.v-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border); cursor: pointer;
+  transition: background .2s, transform .2s;
+  border: none; padding: 0;
+}
+.v-dot.active { background: var(--blush-dark); transform: scale(1.2); }
+
+/* nav arrows */
+.vinyl-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: none; border: 1px solid var(--border);
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--taupe-text);
+  transition: all .15s; z-index: 10;
+}
+.vinyl-arrow:hover { border-color: var(--ink); color: var(--ink); background: var(--cream-mid); }
+.vinyl-arrow.left  { left: -2.5rem; }
+.vinyl-arrow.right { right: -2.5rem; }
+
+/* ── RIGHT: youtube ── */
+.vinyl-right {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.vinyl-yt-label {
+  font-family: 'DM Sans', sans-serif; font-size: 11px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--taupe-text);
+  margin-bottom: .2rem;
+}
+.vinyl-yt-title {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(18px, 2.2vw, 26px); color: var(--ink);
+  margin-bottom: .2rem;
+}
+.vinyl-yt-artist {
+  font-family: 'DM Sans', sans-serif; font-size: 13px;
+  color: var(--taupe-text); letter-spacing: .06em;
+}
+.vinyl-yt-frame {
+  width: 100%; aspect-ratio: 16/9;
+  border: 1.5px solid var(--border);
+  background: var(--ink);
+  position: relative; overflow: hidden;
+}
+.vinyl-yt-frame iframe {
+  width: 100%; height: 100%; border: none; display: block;
+}
+
+/* responsive */
+@media(max-width:860px){
+  .vinyl-stage { grid-template-columns: 1fr; gap: 2.5rem; }
+  .vinyl-left  { width: 100%; }
+  .vinyl-carousel, .vinyl-disc, .vinyl-info,
+  .vinyl-progress-wrap { width: 100%; max-width: 320px; }
+  .vinyl-arrow.left  { left: 0; }
+  .vinyl-arrow.right { right: 0; }
+}
+</style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0X3QKE1ZNC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0X3QKE1ZNC');
+</script>
+</head>
+<body>
+
+<!-- ══ SUBTLE BACKGROUND DOODLES (just 4) ══ -->
+<div style="position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;">
+  <!-- spinning CD top right -->
+  <svg style="position:absolute;top:4%;right:2%;opacity:.08;animation:spin 22s linear infinite;" width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#C4A898" stroke-width=".85">
+    <circle cx="22" cy="22" r="18"/><circle cx="22" cy="22" r="12" stroke-dasharray="5 3"/>
+    <circle cx="22" cy="22" r="7"/><circle cx="22" cy="22" r="3" fill="rgba(196,168,152,.18)"/>
+    <circle cx="22" cy="22" r="1.2" fill="#C4A898"/>
+  </svg>
+  <!-- shokupan left -->
+  <svg style="position:absolute;top:18%;left:1%;opacity:.08;animation:float 9s ease-in-out infinite;" width="36" height="32" viewBox="0 0 36 32" fill="none" stroke="#C4A898" stroke-width=".9" stroke-linecap="round">
+    <rect x="2" y="9" width="32" height="21" rx="5" fill="rgba(196,168,152,.1)"/>
+    <path d="M2 14 Q18 3 34 14" fill="rgba(196,168,152,.12)"/>
+    <circle cx="11" cy="20" r="1.2" fill="rgba(196,168,152,.2)"/>
+    <circle cx="19" cy="17" r="1" fill="rgba(196,168,152,.18)"/>
+    <circle cx="27" cy="21" r="1.1" fill="rgba(196,168,152,.2)"/>
+  </svg>
+  <!-- bagel right mid -->
+  <svg style="position:absolute;top:52%;right:1%;opacity:.07;animation:float 11s ease-in-out infinite 1s;" width="42" height="42" viewBox="0 0 42 42" fill="none">
+    <ellipse cx="21" cy="21" rx="17" ry="14" fill="none" stroke="#C4A898" stroke-width="5.5"/>
+    <ellipse cx="21" cy="21" rx="17" ry="14" fill="none" stroke="rgba(232,180,184,.3)" stroke-width="3.5"/>
+    <ellipse cx="21" cy="21" rx="7" ry="5.5" fill="rgba(250,246,240,.1)"/>
+  </svg>
+  <!-- wheat stalk left lower -->
+  <svg style="position:absolute;top:70%;left:1%;opacity:.07;animation:float 8s ease-in-out infinite .5s;" width="20" height="52" viewBox="0 0 20 52" fill="none" stroke="#C4A898" stroke-width=".85" stroke-linecap="round">
+    <line x1="10" y1="50" x2="10" y2="4"/>
+    <ellipse cx="10" cy="7" rx="3.5" ry="6" fill="rgba(196,168,152,.2)"/>
+    <ellipse cx="4" cy="16" rx="3" ry="5" transform="rotate(-20 4 16)" fill="rgba(196,168,152,.18)"/>
+    <ellipse cx="16" cy="16" rx="3" ry="5" transform="rotate(20 16 16)" fill="rgba(196,168,152,.18)"/>
+  </svg>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Liujun Chen</span><span class="sep"> ✦ </span>
+    <span>Marketing &amp; Growth Analytics</span><span class="sep"> ◦ </span>
+    <span>Consumer Insights &amp; Research</span><span class="sep"> ✦ </span>
+    <span>Paid Media &amp; Social</span><span class="sep"> ◦ </span>
+    <span>Liujun Chen</span><span class="sep"> ✦ </span>
+    <span>Marketing &amp; Growth Analytics</span><span class="sep"> ◦ </span>
+    <span>Consumer Insights &amp; Research</span><span class="sep"> ✦ </span>
+    <span>Paid Media &amp; Social</span><span class="sep"> ◦ </span>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Liujun Chen</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Hire me</a>
+    </div>
+    <div class="nav-badge"><span class="blink"></span>Open to work</div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+<div style="max-width:1080px;margin:0 auto;padding:0 2.5rem;">
+<div class="hero-grid">
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">↳ Marketing Growth Analyst</div>
+
+    <div class="hero-name">Liujun<br>Chen</div>
+
+    <div>
+      <div class="hero-bio">I focus on what makes people click — that's my secret ingredient.</div>
+      <div class="hero-bio-sub" style="margin-top:.6rem;">Like a good recipe, I test, refine, and combine the right elements to make it work.</div>
+    </div>
+
+    <nav class="hero-nav">
+      <a class="hero-nav-link" href="#about">
+        <span class="hero-nav-title">About me</span>
+        <span class="hero-nav-arr">↓</span>
+      </a>
+      <a class="hero-nav-link" href="#work">
+        <span class="hero-nav-title">Selected work</span>
+        <span class="hero-nav-arr">↓</span>
+      </a>
+      <a class="hero-nav-link" href="#skills">
+        <span class="hero-nav-title">Skills &amp; Tools</span>
+        <span class="hero-nav-arr">↓</span>
+      </a>
+      <a class="hero-nav-link" href="#covers">
+        <span class="hero-nav-title">K-pop Covers</span>
+        <span class="hero-nav-arr">↓</span>
+      </a>
+      <a class="hero-nav-link" href="#contact">
+        <span class="hero-nav-title">Contact / Hire me</span>
+        <span class="hero-nav-arr">↓</span>
+      </a>
+    </nav>
+
+    <div class="hero-btns">
+      <a href="#work" class="btn btn-fill">View my work</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+    </div>
+
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-frame">
+      <img src="profile2.jpg" alt="Liujun Chen">
+      <div class="pc tl"></div>
+      <div class="pc tr"></div>
+      <div class="pc bl"></div>
+      <div class="pc br"></div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+
+<!-- ORN DIVIDER -->
+<div class="orn-band">
+  <div class="orn">
+    <span class="orn-text">✦</span>
+    <span class="orn-cd"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#C4A898" stroke-width=".85"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="4" stroke-dasharray="2 1.5"/><circle cx="8" cy="8" r="1.8" fill="rgba(196,168,152,.18)"/><circle cx="8" cy="8" r=".7" fill="#C4A898"/></svg></span>
+    <span class="orn-text">◦</span>
+    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" style="opacity:.5;">
+      <rect x="1" y="4" width="14" height="9" rx="2" fill="#E8B4B8" opacity=".6"/>
+      <path d="M1 6.5 Q8 1 15 6.5" fill="#D4888E" opacity=".5"/>
+    </svg>
+    <span class="orn-text">◦</span>
+    <span class="orn-cdr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#C4A898" stroke-width=".85"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="4" stroke-dasharray="2 1.5"/><circle cx="8" cy="8" r="1.8" fill="rgba(196,168,152,.18)"/><circle cx="8" cy="8" r=".7" fill="#C4A898"/></svg></span>
+    <span class="orn-text">✦</span>
+  </div>
+</div>
+
+<!-- ══ BREAD MARQUEE ══ -->
+<div style="overflow:hidden;white-space:nowrap;padding:.85rem 0;background:var(--cream-mid);border-bottom:1.5px solid var(--border);position:relative;z-index:10;">
+  <div style="display:inline-block;animation:breadmarquee 40s linear infinite;will-change:transform;">
+
+    <!-- shokupan slice -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="38" height="32" viewBox="0 0 38 32" fill="none">
+      <rect x="2" y="9" width="34" height="21" rx="5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.2"/>
+      <path d="M2 15 Q19 3 36 15" fill="#E8B4B8" opacity=".7" stroke="#C4A898" stroke-width="1.1"/>
+      <ellipse cx="11" cy="21" rx="2" ry="1.5" fill="rgba(196,168,152,.3)"/>
+      <ellipse cx="20" cy="18" rx="1.6" ry="1.2" fill="rgba(196,168,152,.25)"/>
+      <ellipse cx="29" cy="22" rx="1.8" ry="1.4" fill="rgba(196,168,152,.28)"/>
+    </svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">shokupan</span>
+
+    <!-- sesame bagel -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="38" height="38" viewBox="0 0 38 38" fill="none">
+      <ellipse cx="19" cy="19" rx="15.5" ry="13" fill="none" stroke="#C4A898" stroke-width="7.5"/>
+      <ellipse cx="19" cy="19" rx="15.5" ry="13" fill="none" stroke="#F0D8C8" stroke-width="5"/>
+      <ellipse cx="19" cy="19" rx="15.5" ry="13" fill="none" stroke="#E8B4B8" stroke-width="2.5"/>
+      <ellipse cx="19" cy="19" rx="6.5" ry="4.8" fill="var(--cream-mid)"/>
+      <ellipse cx="12" cy="9" rx="1.6" ry=".8" transform="rotate(-30 12 9)" fill="#C4A898"/>
+      <ellipse cx="20" cy="7" rx="1.5" ry=".8" transform="rotate(10 20 7)" fill="#C4A898"/>
+      <ellipse cx="28" cy="11" rx="1.6" ry=".8" transform="rotate(40 28 11)" fill="#C4A898"/>
+      <ellipse cx="27" cy="29" rx="1.6" ry=".8" transform="rotate(130 27 29)" fill="#C4A898"/>
+    </svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">sesame bagel</span>
+
+    <!-- croissant -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="52" height="34" viewBox="0 0 52 34" fill="none">
+      <path d="M4 28 C2 20 5 7 13 4 C18 2 22 7 24 13 C24 8 26 3 31 2 C40 0 48 13 48 22 C48 28 44 32 38 32 C30 34 22 34 14 32 C9 31 5 30 4 28Z" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <path d="M8 22 Q16 16 24 18 Q32 14 44 20" fill="none" stroke="#E8B4B8" stroke-width="1.2" stroke-linecap="round" opacity=".8"/>
+    </svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">croissant</span>
+
+    <!-- milk bread -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="11" cy="12" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <circle cx="25" cy="12" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <circle cx="11" cy="24" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <circle cx="25" cy="24" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <circle cx="11" cy="12" r="5.5" fill="#E8B4B8" opacity=".3"/>
+      <circle cx="25" cy="12" r="5.5" fill="#E8B4B8" opacity=".3"/>
+      <circle cx="11" cy="24" r="5.5" fill="#E8B4B8" opacity=".3"/>
+      <circle cx="25" cy="24" r="5.5" fill="#E8B4B8" opacity=".3"/>
+      <line x1="18" y1="4" x2="18" y2="32" stroke="#C4A898" stroke-width=".8" opacity=".5"/>
+      <line x1="4" y1="18" x2="32" y2="18" stroke="#C4A898" stroke-width=".8" opacity=".5"/>
+    </svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">milk bread</span>
+
+    <!-- baguette -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="90" height="24" viewBox="0 0 90 24" fill="none">
+      <path d="M6 18 C3 16 2 12 3 8 C4 4 8 2 15 2 Q45 0 75 2 C82 2 87 5 87 9 C87 14 83 18 78 19 Q45 22 12 19 C9 18 7 18 6 18Z" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <line x1="22" y1="4" x2="18" y2="20" stroke="#E8B4B8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>
+      <line x1="34" y1="3" x2="30" y2="20" stroke="#E8B4B8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>
+      <line x1="46" y1="2.5" x2="42" y2="20" stroke="#E8B4B8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>
+      <line x1="58" y1="3" x2="54" y2="20" stroke="#E8B4B8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>
+      <line x1="70" y1="4" x2="66" y2="20" stroke="#E8B4B8" stroke-width=".9" stroke-linecap="round" opacity=".7"/>
+    </svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">baguette</span>
+
+    <!-- cinnamon roll -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="36" height="36" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="15.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/>
+      <circle cx="18" cy="18" r="12" fill="none" stroke="#E8B4B8" stroke-width="2.2" opacity=".5"/>
+      <circle cx="18" cy="18" r="8.5" fill="none" stroke="#E8B4B8" stroke-width="2.2" opacity=".55"/>
+      <circle cx="18" cy="18" r="5" fill="none" stroke="#D4888E" stroke-width="2" opacity=".5"/>
+      <circle cx="18" cy="18" r="2" fill="#D4888E" opacity=".6"/>
+    </svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">cinnamon roll ✦</span>
+
+    <span style="display:inline-block;width:40px;"></span>
+
+    <!-- REPEAT for seamless loop -->
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="38" height="32" viewBox="0 0 38 32" fill="none"><rect x="2" y="9" width="34" height="21" rx="5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.2"/><path d="M2 15 Q19 3 36 15" fill="#E8B4B8" opacity=".7" stroke="#C4A898" stroke-width="1.1"/><ellipse cx="11" cy="21" rx="2" ry="1.5" fill="rgba(196,168,152,.3)"/><ellipse cx="20" cy="18" rx="1.6" ry="1.2" fill="rgba(196,168,152,.25)"/><ellipse cx="29" cy="22" rx="1.8" ry="1.4" fill="rgba(196,168,152,.28)"/></svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">shokupan</span>
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="38" height="38" viewBox="0 0 38 38" fill="none"><ellipse cx="19" cy="19" rx="15.5" ry="13" fill="none" stroke="#C4A898" stroke-width="7.5"/><ellipse cx="19" cy="19" rx="15.5" ry="13" fill="none" stroke="#F0D8C8" stroke-width="5"/><ellipse cx="19" cy="19" rx="15.5" ry="13" fill="none" stroke="#E8B4B8" stroke-width="2.5"/><ellipse cx="19" cy="19" rx="6.5" ry="4.8" fill="var(--cream-mid)"/></svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">sesame bagel</span>
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="52" height="34" viewBox="0 0 52 34" fill="none"><path d="M4 28 C2 20 5 7 13 4 C18 2 22 7 24 13 C24 8 26 3 31 2 C40 0 48 13 48 22 C48 28 44 32 38 32 C30 34 22 34 14 32 C9 31 5 30 4 28Z" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/></svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">croissant</span>
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="11" cy="12" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/><circle cx="25" cy="12" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/><circle cx="11" cy="24" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/><circle cx="25" cy="24" r="8.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/></svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">milk bread</span>
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="90" height="24" viewBox="0 0 90 24" fill="none"><path d="M6 18 C3 16 2 12 3 8 C4 4 8 2 15 2 Q45 0 75 2 C82 2 87 5 87 9 C87 14 83 18 78 19 Q45 22 12 19 C9 18 7 18 6 18Z" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/></svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">baguette</span>
+    <svg style="display:inline-block;vertical-align:middle;margin:0 18px;" width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="15.5" fill="#F0D8C8" stroke="#C4A898" stroke-width="1.1"/><circle cx="18" cy="18" r="12" fill="none" stroke="#E8B4B8" stroke-width="2.2" opacity=".5"/><circle cx="18" cy="18" r="8.5" fill="none" stroke="#E8B4B8" stroke-width="2.2" opacity=".55"/><circle cx="18" cy="18" r="2" fill="#D4888E" opacity=".6"/></svg>
+    <span style="display:inline-block;vertical-align:middle;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe-text);margin:0 14px;">cinnamon roll ✦</span>
+    <span style="display:inline-block;width:40px;"></span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section" id="about">
+<div style="max-width:1080px;margin:0 auto;padding:0 2.5rem;">
+  <div class="section-rule">
+    <span class="t-label">Chapter One</span>
+  </div>
+  <div class="about-grid">
+    <div class="about-main">
+      <h2 class="section-h">About me</h2>
+      <p class="section-intro">An aspiring Marketing Growth Analyst with a deep curiosity for why people make the choices they make.</p>
+      <hr class="hr" style="margin-bottom:1.8rem;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.85;color:var(--body);max-width:520px;">
+        <p>I studied psychology at Bryn Mawr College and now explore data and human behavior through UC Berkeley's Master's in Computational Social Science.</p>
+        <p style="margin-top:1rem;">My work sits at the intersection of data and human behavior — shaped by experience as a marketing and growth analyst across B2B and consumer tech startups. I've worked on CRM management, paid media campaigns, and marketing analytics, as well as consumer research and insights in a CPG environment. I enjoy translating messy data into clear decisions, whether that's optimizing a campaign or uncovering what actually drives user behavior.</p>
+        <p style="margin-top:1rem;">Off the clock, I'm an obsessive home baker. My specialty is shokupan (Japanese milk bread) and sesame bagels — both demand the same precision and patience I bring to every analysis.</p>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;gap:1rem;margin-top:1.8rem;">
+        <div class="bread-crumb-tags" style="flex:1;">
+          <span class="bct">🥯 bagels</span>
+          <span class="bct">shokupan</span>
+          <span class="bct">dashboards</span>
+          <span class="bct">kpop</span>
+          <span class="bct">funnels</span>
+          <span class="bct">consumer research</span>
+          <span class="bct">croissants</span>
+          <span class="bct">growth</span>
+        </div>
+        <div style="flex-shrink:0;opacity:.5;animation:wobble 5s ease-in-out infinite;">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <ellipse cx="18" cy="18" rx="14" ry="11.5" fill="none" stroke="#C4A898" stroke-width="6"/>
+            <ellipse cx="18" cy="18" rx="14" ry="11.5" fill="none" stroke="#F0D8C8" stroke-width="4"/>
+            <ellipse cx="18" cy="18" rx="6" ry="4.5" fill="var(--cream-mid)"/>
+            <circle cx="12" cy="10" r="1.1" fill="#C4A898" opacity=".75"/>
+            <circle cx="20" cy="9" r="1" fill="#C4A898" opacity=".7"/>
+            <circle cx="26" cy="14" r="1.1" fill="#C4A898" opacity=".75"/>
+            <circle cx="12" cy="27" r="1" fill="#C4A898" opacity=".7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <div class="about-aside">
+      <div class="aside-box">
+        <div class="aside-box-lbl">Expertise</div>
+        <ul class="aside-list">
+          <li>Growth &amp; funnel analytics</li>
+          <li>Consumer behavior research</li>
+          <li>Paid media performance</li>
+          <li>Data visualization &amp; reporting</li>
+          <li>Survey design &amp; analysis</li>
+        </ul>
+      </div>
+      <div class="baking-box">
+        <div class="aside-box-lbl">Currently baking</div>
+        <ul class="aside-list">
+          <li>Shokupan (milk bread) 🍞</li>
+          <li>Sesame bagels 🥯</li>
+          <li>Kouign-amann</li>
+          <li>Matcha rolls</li>
+        </ul>
+      </div>
+      <div style="display:flex;justify-content:center;gap:1.2rem;margin-top:1.2rem;opacity:.4;">
+        <svg width="30" height="28" viewBox="0 0 30 28" fill="none"><rect x="1.5" y="8" width="27" height="18" rx="4" fill="#F0D8C8" stroke="#C4A898" stroke-width="1"/><path d="M1.5 13 Q15 2 28.5 13" fill="#E8B4B8" opacity=".7" stroke="#C4A898" stroke-width=".9"/></svg>
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><ellipse cx="15" cy="15" rx="12" ry="10" fill="none" stroke="#C4A898" stroke-width="5.5"/><ellipse cx="15" cy="15" rx="12" ry="10" fill="none" stroke="#F0D8C8" stroke-width="3.5"/><ellipse cx="15" cy="15" rx="5" ry="3.8" fill="var(--cream-mid)"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ORN DIVIDER 2 -->
+<div class="orn-band" style="border-top:1px solid var(--border);">
+  <div class="orn">
+    <span class="orn-text">◦</span>
+    <span class="orn-cdr"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#C4A898" stroke-width=".85"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="4" stroke-dasharray="2 1.5"/><circle cx="8" cy="8" r=".7" fill="#C4A898"/></svg></span>
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.18em;color:var(--taupe-text);opacity:.7;text-transform:uppercase;">on repeat ♪</span>
+    <span class="orn-cd"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#C4A898" stroke-width=".85"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="4" stroke-dasharray="2 1.5"/><circle cx="8" cy="8" r=".7" fill="#C4A898"/></svg></span>
+    <span class="orn-text">◦</span>
+  </div>
+</div>
+
+<!-- ══ EDUCATION BAND ══ -->
+<div class="edu-band">
+  <div class="edu-band-inner">
+    <div class="edu-col"><span class="edu-label-vert">Education</span></div>
+    <div class="edu-col">
+      <span class="edu-school">Bryn Mawr College</span>
+      <span class="edu-degree">B.A. Psychology</span>
+      <span class="edu-year">2019 – 2023</span>
+    </div>
+    <div class="edu-col">
+      <span class="edu-school">UC Berkeley</span>
+      <span class="edu-degree">M.A. Computational Social Science</span>
+      <span class="edu-year">2023 – Present</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PORTFOLIO ══ -->
+<section class="port-section" id="work">
+  <div style="max-width:1080px;margin:0 auto;padding:0 2.5rem;">
+    <div class="section-rule">
+      <span class="t-label">Chapter Two</span>
+    </div>
+    <h2 class="section-h" style="margin-bottom:.8rem;">Selected work</h2>
+    <p style="font-family:'Playfair Display',serif;font-style:normal;font-size:14px;line-height:1.8;color:var(--body);margin-bottom:2.5rem;max-width:480px;">Projects spanning data visualization, growth analytics, paid media, and consumer research.</p>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab(event,'all')">All Work</button>
+      <button class="tab-btn" onclick="switchTab(event,'dataviz')">Data Viz</button>
+      <button class="tab-btn" onclick="switchTab(event,'media')">Paid Media</button>
+      <button class="tab-btn" onclick="switchTab(event,'research')">Research</button>
+      <button class="tab-btn" onclick="switchTab(event,'growth')">Growth</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-all">
+      <div class="proj-grid">
+        <a class="proj-link" href="Amazon Consumer&sales Dashboard.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb">
+              <svg width="52" height="40" viewBox="0 0 52 40" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round">
+                <line x1="6" y1="34" x2="46" y2="34"/><line x1="6" y1="34" x2="6" y2="4"/>
+                <rect x="9" y="20" width="6" height="14" rx="1" fill="rgba(232,180,184,.2)"/>
+                <rect x="18" y="11" width="6" height="23" rx="1" fill="rgba(232,180,184,.2)"/>
+                <rect x="27" y="17" width="6" height="17" rx="1" fill="rgba(232,180,184,.2)"/>
+                <rect x="36" y="7" width="6" height="27" rx="1" fill="rgba(212,136,142,.3)" stroke="#D4888E" stroke-width="1"/>
+                <path d="M12 20 L21 11 L30 17 L39 7" stroke="#D4888E" stroke-width="1.2" fill="none"/>
+              </svg>
+              <span class="proj-type">Data Viz</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-name">Amazon Gift Card Consumer Behavior Analysis</div>
+              <div class="proj-desc">
+                <ul>
+                  <li>Built a Tableau dashboard analyzing Amazon gift card sales data and customer segments</li>
+                  <li>Identified retention as the primary revenue driver, shifting focus from acquisition to lifecycle strategy</li>
+                </ul>
+              </div>
+              <div class="proj-chips"><span class="chip">Tableau</span><span class="chip">Excel</span><span class="chip">SQL</span></div>
+            </div>
+          </div>
+        </a>
+
+        <a class="proj-link" href="Joopi Growth Analysis.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb">
+              <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round">
+                <circle cx="23" cy="23" r="17" stroke="rgba(196,168,152,.4)"/>
+                <circle cx="23" cy="23" r="10" stroke="rgba(196,168,152,.4)"/>
+                <circle cx="23" cy="23" r="4.5" fill="rgba(232,180,184,.3)" stroke="#D4888E" stroke-width="1.1"/>
+                <line x1="23" y1="3" x2="23" y2="13"/><line x1="33" y1="23" x2="43" y2="23"/>
+                <path d="M35 9 L30 18 L39 17 Z" fill="rgba(232,180,184,.4)" stroke="#D4888E" stroke-width="1"/>
+              </svg>
+              <span class="proj-type">Paid Media</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-name">JOOPI — Paid Marketing Campaign Optimization</div>
+              <div class="proj-desc">
+                <ul>
+                  <li>Executed multi-channel campaigns (Meta, Google, email) and ran A/B tests on creatives, messaging, and audience segments</li>
+                  <li>Increased app downloads by 70% through iterative optimization</li>
+                </ul>
+              </div>
+              <div class="proj-chips"><span class="chip">Meta Ads</span><span class="chip">Google Ads</span><span class="chip">Campaign Analytics</span></div>
+            </div>
+          </div>
+        </a>
+
+        <a class="proj-link" href="Consumer Insight MJN.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb">
+              <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round">
+                <rect x="5" y="4" width="24" height="30" rx="2" fill="rgba(232,180,184,.15)" stroke="rgba(212,136,142,.45)"/>
+                <line x1="10" y1="11" x2="24" y2="11" stroke="rgba(212,136,142,.5)"/>
+                <line x1="10" y1="16" x2="24" y2="16" stroke="rgba(212,136,142,.45)"/>
+                <line x1="10" y1="21" x2="18" y2="21" stroke="rgba(212,136,142,.4)"/>
+                <circle cx="32" cy="32" r="8" stroke="#C4A898" stroke-width="1.1"/>
+                <line x1="37.5" y1="37.5" x2="43" y2="43"/>
+                <line x1="28" y1="32" x2="36" y2="32"/><line x1="32" y1="28" x2="32" y2="36"/>
+              </svg>
+              <span class="proj-type">Research</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-name">Mead Johnson Nutrition — Market Research &amp; Brand Positioning</div>
+              <div class="proj-desc">
+                <ul>
+                  <li>Synthesized social listening, survey data, and competitor campaigns to evaluate brand perception</li>
+                  <li>Improved perception on key selling points by 16% by refining messaging</li>
+                </ul>
+              </div>
+              <div class="proj-chips"><span class="chip">Consumer Insight</span><span class="chip">Survey Research</span><span class="chip">Social Listening</span></div>
+            </div>
+          </div>
+        </a>
+
+        <a class="proj-link" href="Spotify Sentiment Analysis.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb">
+              <svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round">
+                <path d="M6 40 L14 26 L23 33 L32 16 L40 24" stroke="rgba(212,136,142,.55)" fill="none"/>
+                <line x1="6" y1="40" x2="40" y2="40" stroke="rgba(196,168,152,.4)"/>
+                <circle cx="32" cy="16" r="5.5" fill="rgba(232,180,184,.2)" stroke="#D4888E" stroke-width="1.1"/>
+                <line x1="32" y1="12.5" x2="32" y2="19.5" stroke="#D4888E"/>
+                <line x1="28.5" y1="16" x2="35.5" y2="16" stroke="#D4888E"/>
+              </svg>
+              <span class="proj-type">Growth / NLP</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-name">Spotify Sentiment Analysis</div>
+              <div class="proj-desc">
+                <ul>
+                  <li>Applied NLP methods (VADER, TF-IDF, topic modeling) to analyze large-scale Spotify user reviews</li>
+                  <li>Identified key drivers of satisfaction and linked sentiment patterns to rating outcomes</li>
+                </ul>
+              </div>
+              <div class="proj-chips"><span class="chip">Python</span><span class="chip">NLP</span><span class="chip">Topic Modeling</span></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-dataviz">
+      <div class="proj-grid">
+        <a class="proj-link" href="Amazon Consumer&sales Dashboard.pptx" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb"><svg width="52" height="40" viewBox="0 0 52 40" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round"><line x1="6" y1="34" x2="46" y2="34"/><line x1="6" y1="34" x2="6" y2="4"/><rect x="9" y="20" width="6" height="14" rx="1" fill="rgba(232,180,184,.2)"/><rect x="18" y="11" width="6" height="23" rx="1" fill="rgba(232,180,184,.2)"/><rect x="36" y="7" width="6" height="27" rx="1" fill="rgba(212,136,142,.3)" stroke="#D4888E"/><path d="M12 20 L21 11 L39 7" stroke="#D4888E" stroke-width="1.2" fill="none"/></svg><span class="proj-type">Data Viz</span></div>
+            <div class="proj-body"><div class="proj-name">Consumer Behavior Dashboard</div><div class="proj-desc">Interactive Amazon consumer and sales dashboard highlighting gift card trends and segment shifts.</div><div class="proj-chips"><span class="chip">Tableau</span><span class="chip">Dashboard</span><span class="chip">Sales Trends</span></div></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-media">
+      <div class="proj-grid">
+        <a class="proj-link" href="Joopi Growth Analysis.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb"><svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round"><circle cx="23" cy="23" r="17" stroke="rgba(196,168,152,.4)"/><circle cx="23" cy="23" r="10" stroke="rgba(196,168,152,.4)"/><circle cx="23" cy="23" r="4.5" fill="rgba(232,180,184,.3)" stroke="#D4888E" stroke-width="1.1"/></svg><span class="proj-type">Paid Media</span></div>
+            <div class="proj-body"><div class="proj-name">Paid Ads Performance Analysis</div><div class="proj-desc">JOOPI paid media analysis covering creative performance, audience response, and campaign optimization.</div><div class="proj-chips"><span class="chip">Meta Ads</span><span class="chip">Email</span><span class="chip">Optimization</span></div></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-research">
+      <div class="proj-grid">
+        <a class="proj-link" href="Consumer Insight MJN.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb"><svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round"><rect x="5" y="4" width="24" height="30" rx="2" fill="rgba(232,180,184,.15)" stroke="rgba(212,136,142,.45)"/><line x1="10" y1="11" x2="24" y2="11" stroke="rgba(212,136,142,.5)"/><circle cx="32" cy="32" r="8" stroke="#C4A898" stroke-width="1.1"/><line x1="37.5" y1="37.5" x2="43" y2="43"/></svg><span class="proj-type">Research</span></div>
+            <div class="proj-body"><div class="proj-name">Market Research Report</div><div class="proj-desc">Consumer insight case study combining surveys, competitor analysis, and strategic recommendations.</div><div class="proj-chips"><span class="chip">Consumer Insight</span><span class="chip">Survey</span><span class="chip">Strategy</span></div></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-growth">
+      <div class="proj-grid">
+        <a class="proj-link" href="Spotify Sentiment Analysis.pdf" target="_blank">
+          <div class="proj-card">
+            <div class="proj-thumb"><svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#C4A898" stroke-width="1.1" stroke-linecap="round"><path d="M6 40 L14 26 L23 33 L32 16 L40 24" stroke="rgba(212,136,142,.55)" fill="none"/><line x1="6" y1="40" x2="40" y2="40" stroke="rgba(196,168,152,.4)"/><circle cx="32" cy="16" r="5.5" fill="rgba(232,180,184,.2)" stroke="#D4888E" stroke-width="1.1"/></svg><span class="proj-type">Sentiment Analysis</span></div>
+            <div class="proj-body"><div class="proj-name">Spotify Sentiment Analysis</div><div class="proj-desc">NLP analysis of Spotify reviews to surface themes and predict ratings from text.</div><div class="proj-chips"><span class="chip">Python</span><span class="chip">NLP</span><span class="chip">Modeling</span></div></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ QUOTE ══ -->
+<div class="quote-band">
+  <div class="quote-text">—</div>
+  <div class="quote-attr" style="margin-top:.7rem;">◦ Liujun Chen ◦</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-top:1.5rem;opacity:.4;">
+    <span style="display:inline-block;animation:spin 12s linear infinite;line-height:0;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#C4A898" stroke-width=".85"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="4.5" stroke-dasharray="2 1.5"/><circle cx="9" cy="9" r=".8" fill="#C4A898"/></svg></span>
+    <svg width="22" height="20" viewBox="0 0 22 20" fill="none"><rect x="1" y="6" width="20" height="13" rx="3" fill="#F0D8C8" stroke="#C4A898" stroke-width="1"/><path d="M1 10 Q11 1 21 10" fill="#E8B4B8" opacity=".6" stroke="#C4A898" stroke-width=".9"/></svg>
+    <span style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe-text);">Track 01 · Side B · On Repeat</span>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="10" rx="8" ry="6.5" fill="none" stroke="#C4A898" stroke-width="4.2"/><ellipse cx="10" cy="10" rx="8" ry="6.5" fill="none" stroke="#F0D8C8" stroke-width="2.8"/><ellipse cx="10" cy="10" rx="3" ry="2.2" fill="var(--cream-mid)"/></svg>
+    <span style="display:inline-block;animation:spinr 12s linear infinite;line-height:0;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#C4A898" stroke-width=".85"><circle cx="9" cy="9" r="7"/><circle cx="9" cy="9" r="4.5" stroke-dasharray="2 1.5"/><circle cx="9" cy="9" r=".8" fill="#C4A898"/></svg></span>
+  </div>
+</div>
+
+<!-- ══ VINYL PLAYER ══ -->
+<section class="vinyl-section" id="covers">
+  <div class="vinyl-inner">
+    <div class="section-rule">
+      <span class="t-label">Chapter Five</span>
+    </div>
+    <h2 class="section-h">Pop Covers</h2>
+
+    <div class="vinyl-stage">
+
+      <!-- left arrow -->
+      <button class="vinyl-arrow left" id="vPrev" aria-label="Previous">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="9,2 4,7 9,12"/></svg>
+      </button>
+
+      <!-- ── LEFT: disc + controls ── -->
+      <div class="vinyl-left">
+
+        <!-- carousel of discs -->
+        <div class="vinyl-carousel" id="vCarousel">
+
+          <!-- slide 0: Body -->
+          <div class="vinyl-slide active" data-index="0">
+            <div class="vinyl-disc" id="vDisc0">
+              <div class="vinyl-label">
+                <img src="photo-body.jpg" alt="Body cover" id="vImg0">
+              </div>
+            </div>
+          </div>
+
+          <!-- slide 1: Mini Skirt -->
+          <div class="vinyl-slide" data-index="1">
+            <div class="vinyl-disc" id="vDisc1">
+              <div class="vinyl-label">
+                <img src="photo-miniskirt.jpg" alt="Mini Skirt cover" id="vImg1">
+              </div>
+            </div>
+          </div>
+
+          <!-- slide 2: 404 -->
+          <div class="vinyl-slide" data-index="2">
+            <div class="vinyl-disc" id="vDisc2">
+              <div class="vinyl-label">
+                <img src="photo-404.jpg" alt="404 cover" id="vImg2">
+              </div>
+            </div>
+          </div>
+
+          <!-- slide 3: Spaghetti -->
+          <div class="vinyl-slide" data-index="3">
+            <div class="vinyl-disc" id="vDisc3">
+              <div class="vinyl-label">
+                <img src="photo-spaghetti.jpg" alt="Spaghetti cover" id="vImg3">
+              </div>
+            </div>
+          </div>
+
+          <!-- tonearm (shared, sits on top) -->
+          <div class="vinyl-tonearm-wrap paused" id="vTonearm">
+            <svg width="120" height="140" viewBox="0 0 120 140" fill="none">
+              <!-- arm body -->
+              <line x1="88" y1="18" x2="52" y2="110" stroke="var(--taupe)" stroke-width="3" stroke-linecap="round"/>
+              <!-- pivot circle -->
+              <circle cx="88" cy="18" r="7" fill="var(--taupe)" opacity=".85"/>
+              <circle cx="88" cy="18" r="3.5" fill="var(--cream-mid)"/>
+              <!-- head -->
+              <circle cx="52" cy="110" r="5" fill="var(--taupe)" opacity=".9"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- shadow -->
+        <div class="vinyl-shadow"></div>
+
+        <!-- track info -->
+        <div class="vinyl-info">
+          <div class="vinyl-title" id="vTitle">Body</div>
+          <div class="vinyl-artist" id="vArtist">Dayoung</div>
+        </div>
+
+        <!-- progress -->
+        <div class="vinyl-progress-wrap">
+          <span class="vinyl-time" id="vCurrent">0:00</span>
+          <div class="vinyl-progress" id="vProgress">
+            <div class="vinyl-progress-fill" id="vFill"></div>
+          </div>
+          <span class="vinyl-time" id="vDuration">—</span>
+        </div>
+
+        <!-- controls -->
+        <div class="vinyl-controls">
+          <button class="v-btn" id="vShuffle" title="Shuffle">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M2 5h3l8 8h3"/><polyline points="14,2 17,5 14,8"/><path d="M2 13h3l3-3"/><path d="M10 5l3-3 3 3"/></svg>
+          </button>
+          <button class="v-btn" id="vPrevBtn" title="Previous">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><line x1="4" y1="3" x2="4" y2="15"/><polyline points="14,3 7,9 14,15"/></svg>
+          </button>
+          <button class="v-btn play-btn" id="vPlay" title="Play / Pause">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" id="vPlayIcon"><polygon points="4,2 14,8 4,14"/></svg>
+          </button>
+          <button class="v-btn" id="vNextBtn" title="Next">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><line x1="14" y1="3" x2="14" y2="15"/><polyline points="4,3 11,9 4,15"/></svg>
+          </button>
+          <button class="v-btn" id="vRepeat" title="Repeat">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><polyline points="1,4 4,1 7,4"/><path d="M4 1v10a3 3 0 003 3h7"/><polyline points="17,14 14,17 11,14"/><path d="M14 17V7a3 3 0 00-3-3H4"/></svg>
+          </button>
+        </div>
+
+        <!-- dots -->
+        <div class="vinyl-dots" id="vDots">
+          <button class="v-dot active" data-dot="0"></button>
+          <button class="v-dot" data-dot="1"></button>
+          <button class="v-dot" data-dot="2"></button>
+          <button class="v-dot" data-dot="3"></button>
+        </div>
+
+      </div><!-- /vinyl-left -->
+
+      <!-- right arrow -->
+      <button class="vinyl-arrow right" id="vNext" aria-label="Next">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="5,2 10,7 5,12"/></svg>
+      </button>
+
+      <!-- ── RIGHT: youtube embed ── -->
+      <div class="vinyl-right">
+        <div>
+          <div class="vinyl-yt-label">Now Watching</div>
+          <div class="vinyl-yt-title" id="vYtTitle">Body — KOSMOS Cover</div>
+          <div class="vinyl-yt-artist" id="vYtArtist">Original by Dayoung</div>
+        </div>
+        <div class="vinyl-yt-frame">
+          <iframe id="vIframe"
+            src="https://www.youtube.com/embed/WhU1EsC0QGo?enablejsapi=1"
+            title="Body KOSMOS Cover"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    </div><!-- /vinyl-stage -->
+  </div><!-- /vinyl-inner -->
+</section>
+
+<script>
+(function(){
+  const tracks = [
+    { title:'Body', artist:'Dayoung',   ytId:'WhU1EsC0QGo', label:'Body — KOSMOS Cover',      sub:'Original by Dayoung' },
+    { title:'Mini Skirt', artist:'AOA', ytId:'dEBBaJzcNE4', label:'Mini Skirt — Cover',        sub:'Original by AOA' },
+    { title:'404 (New Era)', artist:'KiiKii', ytId:'nljdWHUaSxE', label:'404 (New Era) — Cover', sub:'Original by KiiKii' },
+    { title:'Spaghetti', artist:'LE SSERAFIM', ytId:'X_DZ3eXu3Es', label:'Spaghetti — Cover', sub:'Original by LE SSERAFIM' },
+  ];
+
+  let current = 0, playing = false, shuffled = false, repeated = false;
+  let progressTimer = null, elapsed = 0;
+
+  const slides   = document.querySelectorAll('.vinyl-slide');
+  const discs    = document.querySelectorAll('.vinyl-disc');
+  const tonearm  = document.getElementById('vTonearm');
+  const title    = document.getElementById('vTitle');
+  const artist   = document.getElementById('vArtist');
+  const ytTitle  = document.getElementById('vYtTitle');
+  const ytArtist = document.getElementById('vYtArtist');
+  const iframe   = document.getElementById('vIframe');
+  const fill     = document.getElementById('vFill');
+  const curEl    = document.getElementById('vCurrent');
+  const durEl    = document.getElementById('vDuration');
+  const dots     = document.querySelectorAll('.v-dot');
+  const playBtn  = document.getElementById('vPlay');
+  const playIcon = document.getElementById('vPlayIcon');
+  const shuffleBtn = document.getElementById('vShuffle');
+  const repeatBtn  = document.getElementById('vRepeat');
+
+  function fmt(s){ const m=Math.floor(s/60); return m+':'+(s%60<10?'0':'')+Math.floor(s%60); }
+
+  function goTo(idx, dir){
+    const prev = current;
+    current = (idx + tracks.length) % tracks.length;
+    if(prev === current) return;
+
+    // slide out
+    slides[prev].classList.add(dir === 'next' ? 'exit-left' : 'exit-right');
+    slides[prev].classList.remove('active');
+    setTimeout(()=>{ slides[prev].classList.remove('exit-left','exit-right'); }, 420);
+
+    // slide in
+    slides[current].style.transform = dir === 'next' ? 'translateX(40px)' : 'translateX(-40px)';
+    slides[current].classList.add('active');
+    setTimeout(()=>{ slides[current].style.transform = ''; }, 20);
+
+    updateUI();
+    if(playing) setPlaying(true);
+  }
+
+  function updateUI(){
+    const t = tracks[current];
+    title.textContent   = t.title;
+    artist.textContent  = t.artist;
+    ytTitle.textContent = t.label;
+    ytArtist.textContent= t.sub;
+    iframe.src = `https://www.youtube.com/embed/${t.ytId}?enablejsapi=1`;
+    dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    elapsed = 0; fill.style.width='0%'; curEl.textContent='0:00'; durEl.textContent='—';
+  }
+
+  function setPlaying(on){
+    playing = on;
+    tonearm.classList.toggle('playing', on);
+    tonearm.classList.toggle('paused',  !on);
+    discs[current].classList.toggle('spinning', on);
+
+    // play icon ↔ pause icon
+    playIcon.innerHTML = on
+      ? '<rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/>'
+      : '<polygon points="4,2 14,8 4,14"/>';
+
+    if(on){
+      clearInterval(progressTimer);
+      progressTimer = setInterval(()=>{
+        elapsed += 0.25;
+        const pct = Math.min((elapsed / 210) * 100, 100); // ~3:30 estimate
+        fill.style.width = pct + '%';
+        curEl.textContent = fmt(elapsed);
+        if(pct >= 100){ clearInterval(progressTimer); handleEnd(); }
+      }, 250);
+    } else {
+      clearInterval(progressTimer);
+    }
+  }
+
+  function handleEnd(){
+    if(repeated){ setPlaying(true); return; }
+    const next = shuffled
+      ? Math.floor(Math.random() * tracks.length)
+      : (current + 1) % tracks.length;
+    goTo(next, 'next');
+    setPlaying(true);
+  }
+
+  // controls
+  playBtn.addEventListener('click', ()=> setPlaying(!playing));
+  document.getElementById('vPrev').addEventListener('click', ()=>{ goTo(current-1,'prev'); });
+  document.getElementById('vNext').addEventListener('click', ()=>{ goTo(current+1,'next'); });
+  document.getElementById('vPrevBtn').addEventListener('click', ()=>{ goTo(current-1,'prev'); });
+  document.getElementById('vNextBtn').addEventListener('click', ()=>{ goTo(current+1,'next'); });
+
+  shuffleBtn.addEventListener('click', ()=>{
+    shuffled = !shuffled;
+    shuffleBtn.classList.toggle('active', shuffled);
+  });
+  repeatBtn.addEventListener('click', ()=>{
+    repeated = !repeated;
+    repeatBtn.classList.toggle('active', repeated);
+  });
+
+  dots.forEach(d => d.addEventListener('click', ()=>{
+    const idx = +d.dataset.dot;
+    goTo(idx, idx > current ? 'next' : 'prev');
+  }));
+
+  // progress bar click-to-seek (visual only)
+  document.getElementById('vProgress').addEventListener('click', function(e){
+    const pct = e.offsetX / this.offsetWidth;
+    elapsed = pct * 210;
+    fill.style.width = (pct*100)+'%';
+    curEl.textContent = fmt(elapsed);
+  });
+})();
+</script>
+
+<!-- ══ SKILLS ══ -->
+<section class="skills-section" id="skills">
+  <div style="max-width:1080px;margin:0 auto;padding:0 2.5rem;position:relative;">
+    <div class="section-rule">
+      <span class="t-label">Chapter Four</span>
+    </div>
+    <h2 class="section-h" style="margin-bottom:1.8rem;">Skills &amp; Tools</h2>
+
+    <div class="skills-grid">
+      <div class="sk-card">
+        <div class="sk-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#D4888E" stroke-width="1.2" stroke-linecap="round"><polyline points="1,15 5,8 10,12 15,4 19,9"/><line x1="1" y1="19" x2="19" y2="19"/><line x1="1" y1="19" x2="1" y2="3"/></svg></div>
+        <div class="sk-name">Growth &amp; Analytics</div>
+        <ul class="sk-list">
+          <li><span class="sk-accent"></span>Google Analytics 4</li>
+          <li><span class="sk-accent"></span>Cohort &amp; retention analysis</li>
+          <li><span class="sk-accent"></span>Funnel optimization</li>
+          <li><span class="sk-accent"></span>A/B testing</li>
+          <li><span class="sk-accent"></span>KPI dashboard design</li>
+        </ul>
+      </div>
+      <div class="sk-card">
+        <div class="sk-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#D4888E" stroke-width="1.2" stroke-linecap="round"><rect x="1" y="1" width="18" height="18" rx="2"/><line x1="5" y1="8" x2="5" y2="15"/><line x1="9" y1="5" x2="9" y2="15"/><line x1="13" y1="11" x2="13" y2="15"/><line x1="17" y1="7" x2="17" y2="15"/></svg></div>
+        <div class="sk-name">Data Visualization</div>
+        <ul class="sk-list">
+          <li><span class="sk-accent"></span>Tableau</li>
+          <li><span class="sk-accent"></span>Looker / Looker Studio</li>
+          <li><span class="sk-accent"></span>Power BI</li>
+          <li><span class="sk-accent"></span>Python (Matplotlib, Seaborn)</li>
+          <li><span class="sk-accent"></span>Excel advanced charts</li>
+        </ul>
+      </div>
+      <div class="sk-card">
+        <div class="sk-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C4A898" stroke-width="1.2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="6.5"/><line x1="13.5" y1="13.5" x2="19" y2="19"/><line x1="5.5" y1="8.5" x2="11.5" y2="8.5"/><line x1="8.5" y1="5.5" x2="8.5" y2="11.5"/></svg></div>
+        <div class="sk-name">Research &amp; Data</div>
+        <ul class="sk-list">
+          <li><span class="sk-accent"></span>SQL (MySQL, BigQuery)</li>
+          <li><span class="sk-accent"></span>Python (Pandas, NumPy)</li>
+          <li><span class="sk-accent"></span>Survey design — Qualtrics</li>
+          <li><span class="sk-accent"></span>SPSS statistical analysis</li>
+          <li><span class="sk-accent"></span>Competitive research</li>
+        </ul>
+      </div>
+      <div class="sk-card">
+        <div class="sk-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#D4888E" stroke-width="1.2" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><circle cx="10" cy="10" r="3.5"/><line x1="10" y1="1" x2="10" y2="6.5"/><line x1="17.5" y1="10" x2="19" y2="10"/><path d="M14.5 3.5 L12 7.5 L16.5 7 Z" fill="rgba(232,180,184,.4)"/></svg></div>
+        <div class="sk-name">Paid Media &amp; Ads</div>
+        <ul class="sk-list">
+          <li><span class="sk-accent"></span>Meta Ads Manager</li>
+          <li><span class="sk-accent"></span>Google Ads</li>
+          <li><span class="sk-accent"></span>TikTok Ads</li>
+          <li><span class="sk-accent"></span>Campaign performance reporting</li>
+          <li><span class="sk-accent"></span>Audience segmentation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:1rem;margin-top:2rem;flex-wrap:wrap;justify-content:center;">
+      <div style="opacity:.4;animation:wobble 6s ease-in-out infinite;flex-shrink:0;">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+          <ellipse cx="15" cy="15" rx="11" ry="9" fill="none" stroke="#C4A898" stroke-width="5"/>
+          <ellipse cx="15" cy="15" rx="11" ry="9" fill="none" stroke="#F0D8C8" stroke-width="3.2"/>
+          <ellipse cx="15" cy="15" rx="4" ry="3" fill="var(--cream-mid)"/>
+          <circle cx="9" cy="9" r=".8" fill="#C4A898" opacity=".7"/>
+          <circle cx="19" cy="8" r=".75" fill="#C4A898" opacity=".65"/>
+        </svg>
+      </div>
+      <div class="soft-tags" style="margin-top:0;">
+        <span class="soft-tag">patience</span>
+        <span class="soft-tag">precision</span>
+        <span class="soft-tag">curiosity</span>
+        <span class="soft-tag">storytelling</span>
+        <span class="soft-tag">growth mindset</span>
+        <span class="soft-tag">detail-oriented</span>
+        <span class="soft-tag">creativity</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-section" id="contact">
+  <div style="max-width:1080px;margin:0 auto;padding:0 2.5rem;">
+    <div class="section-rule">
+      <span class="t-label">Final Chapter</span>
+    </div>
+    <div style="text-align:center;">
+      <h2 class="section-h">Let's talk</h2>
+    </div>
+    <hr class="hr" style="max-width:60px;margin:1.2rem auto 1.8rem;">
+    <p class="contact-note">I'm actively looking for roles in marketing analytics, growth, and consumer insights. If you need someone who turns data into strategy — and bakes excellent shokupan — let's talk.</p>
+
+    <div style="display:flex;justify-content:center;gap:1.5rem;margin:1.5rem 0 .5rem;opacity:.35;">
+      <svg width="26" height="24" viewBox="0 0 26 24" fill="none"><rect x="1.5" y="7" width="23" height="15" rx="3" fill="#F0D8C8" stroke="#C4A898" stroke-width="1"/><path d="M1.5 11 Q13 1 24.5 11" fill="#E8B4B8" opacity=".6" stroke="#C4A898" stroke-width=".9"/></svg>
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><ellipse cx="13" cy="13" rx="10" ry="8" fill="none" stroke="#C4A898" stroke-width="4.8"/><ellipse cx="13" cy="13" rx="10" ry="8" fill="none" stroke="#F0D8C8" stroke-width="3"/><ellipse cx="13" cy="13" rx="3.8" ry="2.6" fill="var(--cream-mid)"/></svg>
+    </div>
+
+    <div class="contact-grid">
+      <a href="mailto:cynthiac5280@outlook.com" class="c-item">
+        <svg width="15" height="13" viewBox="0 0 15 13" fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"><rect x="1" y="1" width="13" height="11" rx="1.5"/><path d="M1 3 L7.5 7.5 L14 3"/></svg>
+        <span style="flex:1;"><span class="c-main">Email</span><span class="c-sub">cynthiac5280@outlook.com</span></span>
+        <span class="c-arr">↗</span>
+      </a>
+      <a href="http://www.linkedin.com/in/liujun-cchen" class="c-item">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"><rect x="1" y="1" width="11" height="11" rx="1.8"/><line x1="3.5" y1="5.5" x2="3.5" y2="10"/><line x1="3.5" y1="3" x2="3.5" y2="3.9"/><path d="M6.5 10 L6.5 7.5 C6.5 6.2 9.5 6.2 9.5 7.5 L9.5 10"/></svg>
+        <span style="flex:1;"><span class="c-main">LinkedIn</span><span class="c-sub">liujun-cchen</span></span>
+        <span class="c-arr">↗</span>
+      </a>
+      <a href="Liujun Resume_0319_paid media.pdf" class="c-item">
+        <svg width="13" height="15" viewBox="0 0 13 15" fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"><rect x="1" y="1" width="11" height="13" rx="1.5"/><line x1="3.5" y1="5" x2="9.5" y2="5"/><line x1="3.5" y1="7.5" x2="9.5" y2="7.5"/><line x1="3.5" y1="10" x2="6.5" y2="10"/></svg>
+        <span style="flex:1;"><span class="c-main">Resume</span><span class="c-sub">download PDF</span></span>
+        <span class="c-arr">↗</span>
+      </a>
+      <a href="#work" class="c-item">
+        <svg width="13" height="15" viewBox="0 0 13 15" fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round"><rect x="1" y="3" width="11" height="11" rx="1.5"/><path d="M3.5 3 L3.5 1.5 Q3.5 1 4.5 1 L8.5 1 Q9.5 1 9.5 1.5 L9.5 3"/><line x1="3.5" y1="6.5" x2="9.5" y2="6.5"/><line x1="3.5" y1="9" x2="7" y2="9"/></svg>
+        <span style="flex:1;"><span class="c-main">Portfolio</span><span class="c-sub">view all work</span></span>
+        <span class="c-arr">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <span class="footer-name">Liujun Chen</span>
+  <span class="footer-copy">Marketing Growth Analyst &nbsp;✦&nbsp; Open to Work &nbsp;✦&nbsp; 2025</span>
+</footer>
+
+<script>
+function switchTab(e, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
