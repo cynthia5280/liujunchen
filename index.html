@@ -413,15 +413,7 @@ footer { background:var(--ink); border-top:2px solid #1A0E08; padding:1.5rem 2.5
   width: 100%; height: 100%; object-fit: cover; object-position: center top;
 }
 /* center hole */
-.vinyl-disc::after {
-  content: '';
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--cream-mid);
-  box-shadow: 0 0 0 2px rgba(196,168,152,.4);
-  z-index: 2;
-}
+.vinyl-disc::after {display: none; }
 /* shadow under disc */
 .vinyl-shadow {
   width: 260px; height: 24px; margin: 0 auto;
@@ -1085,7 +1077,7 @@ footer { background:var(--ink); border-top:2px solid #1A0E08; padding:1.5rem 2.5
     <div class="section-rule">
       <span class="t-label">Chapter Five</span>
     </div>
-    <h2 class="section-h">Pop Covers</h2>
+    <h2 class="section-h">KPOP Covers</h2>
 
     <div class="vinyl-stage">
 
@@ -1227,9 +1219,9 @@ footer { background:var(--ink); border-top:2px solid #1A0E08; padding:1.5rem 2.5
 (function(){
   const tracks = [
     { title:'Body', artist:'Dayoung',   ytId:'WhU1EsC0QGo', label:'Body — KOSMOS Cover',      sub:'Original by Dayoung' },
-    { title:'Mini Skirt', artist:'AOA', ytId:'dEBBaJzcNE4', label:'Mini Skirt — Cover',        sub:'Original by AOA' },
-    { title:'404 (New Era)', artist:'KiiKii', ytId:'nljdWHUaSxE', label:'404 (New Era) — Cover', sub:'Original by KiiKii' },
-    { title:'Spaghetti', artist:'LE SSERAFIM', ytId:'X_DZ3eXu3Es', label:'Spaghetti — Cover', sub:'Original by LE SSERAFIM' },
+    { title:'Mini Skirt', artist:'AOA', ytId:'dEBBaJzcNE4', label:'Mini Skirt — KOSMOS Cover',        sub:'Original by AOA' },
+    { title:'404 (New Era)', artist:'KiiKii', ytId:'nljdWHUaSxE', label:'404 (New Era) — AfterNEON Cover', sub:'Original by KiiKii' },
+    { title:'Spaghetti', artist:'LE SSERAFIM', ytId:'X_DZ3eXu3Es', label:'Spaghetti — KOSMOS Cover', sub:'Original by LE SSERAFIM' },
   ];
 
   let current = 0, playing = false, shuffled = false, repeated = false;
